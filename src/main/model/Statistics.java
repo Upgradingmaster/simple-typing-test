@@ -8,11 +8,11 @@ public class Statistics {
     private ArrayList<Statistic> stats = new ArrayList<>();
 
     /*
-     * REQUIRES: an array of Statistic instances
+     * REQUIRES: an variable amount of Statistic instances
      * MODIFIES: this
      * EFFECTS: Instantiates this object with an ArrayList of statistics
      * */
-    public Statistics(ArrayList<Statistic> stats) {
+    public Statistics(Statistic... stats) {
         //stub 
     }
 
