@@ -31,14 +31,14 @@ public class Statistic {
      * REQUIRES: this
      * MODIFIES: this
      * EFFECTS: Generates a "diff" based on the expectedSentence and the
-     * userSentence of this instance and assigns it to the diff field
+     *          userSentence of this instance and returns it
      * 
-     * A diff is a string with two sentences, the expectedSentence and the
-     * userSentence,
-     * however the userSentence is color coded to highlight errors in red and
-     * correct letters in green
+     *          A diff is a string with two sentences, the expectedSentence and the
+     *          userSentence,
+     *          however the userSentence is color coded to highlight errors in red and
+     *          correct letters in green
      */
-    public void generateDiff() {
+    public String generateDiff() {
         // stub
     }
 
@@ -46,7 +46,7 @@ public class Statistic {
      * REQUIRES: this
      * MODIFIES: this
      * EFFECTS: finds the character which was incorrectly typed the most number of
-     * times
+     *          times and returns it
      */
     public char findWorstLetter() {
         // stub
@@ -56,9 +56,9 @@ public class Statistic {
      * REQUIRES: this
      * MODIFIES: this
      * EFFECTS: calculates the words typed by the user before the end of the
-     * totalDuration
-     * a word is rounded up so if a word is incomplete due to the time, it is still
-     * counted as a word
+     *          totalDuration and returns it.
+     *          A word is rounded up so if a word is incomplete due to the time, it is still
+     *          counted as a word
      */
     public int calculateWordsTyped() {
         // stub
@@ -68,6 +68,7 @@ public class Statistic {
      * REQUIRES: this
      * MODIFIES: this
      * EFFECTS: calculates the wpm by dividing the wordsTyped and the duration
+     *          and returns it
      */
     public char calculateWpm() {
         // stub
@@ -77,8 +78,9 @@ public class Statistic {
      * REQUIRES: this
      * MODIFIES: this
      * EFFECTS: calculates accuracy by comparing each character of userSentence
-     * with the respective expectedSentence, summing the correct characters,
-     * and then dividing by the total number of characters
+     *          with the respective expectedSentence, summing the correct characters,
+     *          and then dividing by the total number of characters.
+     *          Then returns it
      */
     public int calculateAccuracy() {
         // stub

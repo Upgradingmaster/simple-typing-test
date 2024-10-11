@@ -30,36 +30,44 @@ class StatisticTest {
         assertEquals(totalDuration, stat.getTotalDuration());
         assertEquals(userDuration, stat.getUserDuration());
 
-      // all other cases are covered by the other tests
+        assertEquals(stat.calculateWpm(), stat.getWpm());
+        assertEquals(stat.calculateAccuracy(), stat.getAccuracy());
+        assertEquals(stat.calculateWordsTyped(), stat.getWordsTyped());
+        assertEquals(stat.findWorstLetter(), stat.getWorstLetter());
+        assertEquals(stat.generateDiff(), stat.getDiff());
     }
 
     @Test
     void testGenerateDiff() {
-      //stat.generateDiff(); not needed since constructor in runBefore() calls it
-        assertEquals(expectedDiff, stat.getDiff());
+        assertEquals(expectedDiff, stat.generateDiff());
     }
 
     @Test
     void testFindWorstLetter() {
-      //stat.findWorstLetter(); not needed since constructor in runBefore() calls it
-        assertEquals("c", stat.getWorstLetter());
+        assertEquals("c", stat.findWorstLetter());
     }
 
     @Test
     void testCalculateWordsTyped() {
-      //stat.calculateWordsTyped(); not needed since constructor in runBefore() calls it
-        assertEquals(1, stat.getWordsTyped());
+        assertEquals(1, stat.calculateWordsTyped());
     }
 
     @Test
     void testCalculateWpm() {
-      //stat.calculateWpm(); not needed since constructor in runBefore() calls it
-        assertEquals((int)(1 / (15 / 60)), stat.getWpm());
+        assertEquals((int)(1 / (15 / 60)), stat.calculateWpm());
     }
 
     @Test
     void testCalculateAccuracy() {
-      //stat.calculateAccuracy(); not needed since constructor in runBefore() calls it
-        assertEquals((int)((2 / 3) * 100), stat.getAccuracy());
+        assertEquals((int)((2 / 3) * 100), stat.calculateAccuracy());
+    }
+
+    @Test
+    @SuppressWarnings("LineLength")
+    void testToString() {
+        assertEquals(String.format(
+                "Statistic:\n \tTime Taken:%d\n \tWPM:%d\n \tAccuracy:%d%%\n \tWords Typed:%d\n \tWorst Letter: %d\n\n", 
+                stat.getUserDuration(), stat.getWpm(), stat.getAccuracy(), stat.getWordsTyped(), stat.getWorstLetter()), 
+                stat.toString());
     }
 }
