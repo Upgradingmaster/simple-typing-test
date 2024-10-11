@@ -27,7 +27,6 @@ class StatisticsTest {
     }
 
     @Test
-    @SuppressWarnings("indentation")
     void testGenerateGraph() {
         // Is essentially UI method which does not require testing
         // as mentioned in the instructions
