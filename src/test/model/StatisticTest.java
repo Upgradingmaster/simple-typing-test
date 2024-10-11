@@ -70,4 +70,8 @@ class StatisticTest {
                 stat.getUserDuration(), stat.getWpm(), stat.getAccuracy(), stat.getWordsTyped(), stat.getWorstLetter()), 
                 stat.toString());
     }
+
+    void testGetErrors(){
+      assertEquals(new boolean[]{false, false, true}, stat.getErrors(expectedSentence, userSentence));
+    }
 }

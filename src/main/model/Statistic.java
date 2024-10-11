@@ -1,5 +1,9 @@
 package model;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 // Represents a single Statistic for a test done by the user
 public class Statistic {
     // Information about the test
@@ -15,6 +19,12 @@ public class Statistic {
     private final int worstLetter;
     private final String diff;
 
+    // Constants
+    //  Colors
+    private final String red = "\u001B[31m";
+    private final String green = "\u001B[32m";
+    private final String original = "\u001B[0m";
+
     /*
      * REQUIRES: userSentence, expectedSentence which is not empty,
      * totalDuration > 0, userDuration > 0,
@@ -24,8 +34,17 @@ public class Statistic {
      * and calculate other variables based on said values
      */
     public Statistic(String expectedSentence, String userSentence, int totalDuration, int userDuration) {
-        // stub
+        this.expectedSentence = expectedSentence;
+        this.userSentence = userSentence;
+        this.totalDuration = totalDuration;
+        this.userDuration = userDuration;
+        this.wpm = calculateWpm();
+        this.accuracy = calculateAccuracy();
+        this.wordsTyped = calculateWordsTyped();
+        this.worstLetter = findWorstLetter();
+        this.diff = generateDiff();
     }
+
 
     /*
      * REQUIRES: this
@@ -39,17 +58,41 @@ public class Statistic {
      *          correct letters in green
      */
     public String generateDiff() {
-        // stub
+        StringBuilder diff = new StringBuilder(
+                10 + expectedSentence.length() + 1 + 
+                8 + (5 * userSentence.length()) + 1);
+        boolean[] errors = getErrors(expectedSentence, userSentence);
+        for (int i = 0; i < errors.length; i++) {
+            if (errors[i]) diff.append(red); else diff.append(green);
+            diff.append(userSentence.charAt(i));
+        }
+
+        return diff.toString();
     }
 
     /*
      * REQUIRES: this
      * MODIFIES: this
      * EFFECTS: finds the character which was incorrectly typed the most number of
-     *          times and returns it
+     *          times using a hashmap and iterating through it,
+     *          then returns it
      */
     public char findWorstLetter() {
-        // stub
+        Map<Character, Integer> counts = new HashMap<>();
+        char userChar;
+        char expectedChar;
+
+        // Populate map with the incorrect characters and their respective frequency
+        for (int i = 0; i < userSentence.length(); i++ ) {
+            userChar = userSentence.charAt(i);
+            expectedChar = expectedSentence.charAt(i);
+            if (userChar != expectedChar){
+                counts.put(userChar, counts.getOrDefault(userChar, 0) + 1);
+            }
+        }
+
+        char max = Collections.max(counts.entrySet(), Map.Entry.comparingByValue()).getKey();
+        return max;
     }
 
     /*
@@ -61,7 +104,8 @@ public class Statistic {
      *          counted as a word
      */
     public int calculateWordsTyped() {
-        // stub
+        return userSentence.split(" ").length;
+
     }
 
     /*
@@ -70,8 +114,8 @@ public class Statistic {
      * EFFECTS: calculates the wpm by dividing the wordsTyped and the duration
      *          and returns it
      */
-    public char calculateWpm() {
-        // stub
+    public int calculateWpm() {
+        return (int)(calculateWordsTyped() / (userDuration / 60));
     }
 
     /*
@@ -83,7 +127,12 @@ public class Statistic {
      *          Then returns it
      */
     public int calculateAccuracy() {
-        // stub
+        boolean[] errors = getErrors(expectedSentence, userSentence);
+        int correctCount;
+        for (boolean b : errors) {
+            correctCount += (b) ? 0 : 1;
+        } 
+        return (int) (correctCount / errors.length);
     }
 
     /*
@@ -92,8 +141,31 @@ public class Statistic {
      */
     @Override
     public String toString() {
-        // stub
+        return String.format(
+                "Statistic:\n \tTime Taken:%d\n \tWPM:%d\n \tAccuracy:%d%%\n \tWords Typed:%d\n \tWorst Letter: %d\n\n", 
+                userDuration, wpm, accuracy, wordsTyped, worstLetter);
     }
+
+
+    // Helper Functions
+
+    /*
+     * REQUIRES: two strings of any length
+     * EFFECTS: compares each character of two strings and
+     *          appends a true or false to an Array based on if they
+     *          are different or not respectively
+     *          It does this until it reaches the end of any of the strings
+     *          Then returns the array
+     */
+    public boolean[] getErrors(String s1, String s2) {
+        int length = Math.min(s1.length(), s2.length());
+        boolean[] errArr = new boolean[length];
+        for (int i = 0; i < length; i++) {
+            errArr[i] = !(s1.charAt(i) == s2.charAt(i));
+        }
+        return errArr;
+    }
+
 
     // GETTERS
     public String getExpectedSentence() {
