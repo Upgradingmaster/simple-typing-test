@@ -9,14 +9,14 @@ public class Statistic {
     // Information about the test
     private final String expectedSentence;
     private final String userSentence;
-    private final int totalDuration;
+    private final int totalDuration; // Redundant for now
     private final int userDuration;
 
     // Variables to measure
     private final int wpm;
     private final int accuracy;
     private final int wordsTyped;
-    private final int worstLetter;
+    private final char worstLetter;
     private final String diff;
 
     // Constants
@@ -72,6 +72,7 @@ public class Statistic {
             diff.append(userSentence.charAt(i));
         }
 
+        diff.append(original);
         return diff.toString();
     }
 
@@ -95,7 +96,9 @@ public class Statistic {
                 counts.put(userChar, counts.getOrDefault(userChar, 0) + 1);
             }
         }
-
+        if (counts.isEmpty()) {
+            return ' ';
+        };
         char max = Collections.max(counts.entrySet(), Map.Entry.comparingByValue()).getKey();
         return max;
     }
@@ -120,7 +123,8 @@ public class Statistic {
      *          and returns it
      */
     public int calculateWpm() {
-        return (int)(((double)calculateWordsTyped() / (double)(userDuration / 60)) * 100);
+        return (int)(((double)(Math.max(calculateWordsTyped(), 1)) 
+                    / (double)(userDuration / 60.0)));
     }
 
     /*
@@ -137,7 +141,7 @@ public class Statistic {
         for (boolean b : errors) {
             correctCount += (b) ? 0 : 1;
         } 
-        return (int)((double)correctCount / (double)(errors.length));
+        return (int)((double)correctCount / (double)(errors.length) * 100.0);
     }
 
     /*
@@ -147,9 +151,10 @@ public class Statistic {
     @Override
     @SuppressWarnings("LineLength")
     public String toString() {
+        String w = (worstLetter == ' ')? "No mistakes" :  worstLetter + "";
         return String.format(
-                "Statistic:\n\tTime Taken:%d\n\tWPM:%d\n\tAccuracy:%d%%\n\tWords Typed:%d\n\tWorst Letter: %d\n\n %s", 
-                userDuration, wpm, accuracy, wordsTyped, worstLetter, diff);
+                "Statistic:\n\tTime Taken: %d\n\tWPM: %d\n\tAccuracy: %d%%\n\tWords Typed: %d\n\tWorst Letter: %s\n\n %s", 
+                userDuration, wpm, accuracy, wordsTyped ,w , diff);
     }
 
 
