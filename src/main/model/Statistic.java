@@ -61,6 +61,7 @@ public class Statistic {
         StringBuilder diff = new StringBuilder(
                 10 + expectedSentence.length() + 1 
                 + 8 + (5 * userSentence.length()) + 1);
+        diff.append("\tExpected Sentence: " + expectedSentence + "\n\t");
         boolean[] errors = getErrors(expectedSentence, userSentence);
         for (int i = 0; i < errors.length; i++) {
             if (errors[i]) { 
@@ -147,8 +148,8 @@ public class Statistic {
     @SuppressWarnings("LineLength")
     public String toString() {
         return String.format(
-                "Statistic:\n \tTime Taken:%d\n \tWPM:%d\n \tAccuracy:%d%%\n \tWords Typed:%d\n \tWorst Letter: %d\n\n", 
-                userDuration, wpm, accuracy, wordsTyped, worstLetter);
+                "Statistic:\n\tTime Taken:%d\n\tWPM:%d\n\tAccuracy:%d%%\n\tWords Typed:%d\n\tWorst Letter: %d\n\n %s", 
+                userDuration, wpm, accuracy, wordsTyped, worstLetter, diff);
     }
 
 

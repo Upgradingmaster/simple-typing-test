@@ -16,7 +16,7 @@ class StatisticTest {
     private final String green = "\u001B[32m";
     private final String original = "\u001B[0m";
 
-    private final String expectedDiff = expectedSentence + "\n" + green + "ab" + red + "d";
+    private final String expectedDiff = "\tExpected Sentence: " + expectedSentence + "\n\t" + green + "ab" + red + "d";
 
     @BeforeEach
     void runBefore() {
@@ -66,8 +66,8 @@ class StatisticTest {
     @SuppressWarnings("LineLength")
     void testToString() {
         assertEquals(String.format(
-                "Statistic:\n \tTime Taken:%d\n \tWPM:%d\n \tAccuracy:%d%%\n \tWords Typed:%d\n \tWorst Letter: %d\n\n", 
-                stat.getUserDuration(), stat.getWpm(), stat.getAccuracy(), stat.getWordsTyped(), stat.getWorstLetter()), 
+                "Statistic:\n \tTime Taken:%d\n \tWPM:%d\n \tAccuracy:%d%%\n \tWords Typed:%d\n \tWorst Letter: %d\n\n %s", 
+                stat.getUserDuration(), stat.getWpm(), stat.getAccuracy(), stat.getWordsTyped(), stat.getWorstLetter(), stat.getDiff()), 
                 stat.toString());
     }
 
