@@ -31,7 +31,7 @@ public class Statistic {
      * and totalDuration >= userDuration
      * MODIFIES: this
      * EFFECTS: Initializes the fields of this object with the parameter values
-     * and calculate other variables based on said values
+     *          and calculate other variables based on said values
      */
     public Statistic(String expectedSentence, String userSentence, int totalDuration, int userDuration) {
         this.expectedSentence = expectedSentence;
@@ -59,11 +59,15 @@ public class Statistic {
      */
     public String generateDiff() {
         StringBuilder diff = new StringBuilder(
-                10 + expectedSentence.length() + 1 + 
-                8 + (5 * userSentence.length()) + 1);
+                10 + expectedSentence.length() + 1 
+                + 8 + (5 * userSentence.length()) + 1);
         boolean[] errors = getErrors(expectedSentence, userSentence);
         for (int i = 0; i < errors.length; i++) {
-            if (errors[i]) diff.append(red); else diff.append(green);
+            if (errors[i]) { 
+                diff.append(red); 
+            } else { 
+                diff.append(green); 
+            }
             diff.append(userSentence.charAt(i));
         }
 
@@ -83,10 +87,10 @@ public class Statistic {
         char expectedChar;
 
         // Populate map with the incorrect characters and their respective frequency
-        for (int i = 0; i < userSentence.length(); i++ ) {
+        for (int i = 0; i < userSentence.length(); i++) {
             userChar = userSentence.charAt(i);
             expectedChar = expectedSentence.charAt(i);
-            if (userChar != expectedChar){
+            if (userChar != expectedChar) {
                 counts.put(userChar, counts.getOrDefault(userChar, 0) + 1);
             }
         }
@@ -115,7 +119,7 @@ public class Statistic {
      *          and returns it
      */
     public int calculateWpm() {
-        return (int)(calculateWordsTyped() / (userDuration / 60));
+        return (int)(((double)calculateWordsTyped() / (double)(userDuration / 60)) * 100);
     }
 
     /*
@@ -128,11 +132,11 @@ public class Statistic {
      */
     public int calculateAccuracy() {
         boolean[] errors = getErrors(expectedSentence, userSentence);
-        int correctCount;
+        int correctCount = 0;
         for (boolean b : errors) {
             correctCount += (b) ? 0 : 1;
         } 
-        return (int) (correctCount / errors.length);
+        return (int)((double)correctCount / (double)(errors.length));
     }
 
     /*
@@ -140,6 +144,7 @@ public class Statistic {
      * EFFECTS: returns a string representation of the Statistic
      */
     @Override
+    @SuppressWarnings("LineLength")
     public String toString() {
         return String.format(
                 "Statistic:\n \tTime Taken:%d\n \tWPM:%d\n \tAccuracy:%d%%\n \tWords Typed:%d\n \tWorst Letter: %d\n\n", 

@@ -54,12 +54,12 @@ class StatisticTest {
 
     @Test
     void testCalculateWpm() {
-        assertEquals((int)(1 / (15 / 60)), stat.calculateWpm());
+        assertEquals((int)((double)1 / (double)(15 / 60)), stat.calculateWpm());
     }
 
     @Test
     void testCalculateAccuracy() {
-        assertEquals((int)((2 / 3) * 100), stat.calculateAccuracy());
+        assertEquals((int)(((double)2 / (double)3) * 100), stat.calculateAccuracy());
     }
 
     @Test
@@ -71,7 +71,7 @@ class StatisticTest {
                 stat.toString());
     }
 
-    void testGetErrors(){
-      assertEquals(new boolean[]{false, false, true}, stat.getErrors(expectedSentence, userSentence));
+    void testGetErrors() {
+        assertEquals(new boolean[]{false, false, true}, stat.getErrors(expectedSentence, userSentence));
     }
 }
