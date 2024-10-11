@@ -45,7 +45,7 @@ public class SimpleTypingTest {
      * EFFECTS: starts the main appplication processes/methods,
      *          can be used to restart
      */
-    public void startupSequence(){
+    public void startupSequence() {
         //scanner = new Scanner(System.in);
         displayMainMenu();
         int choice = awaitUserInput(1, mainMenuOptionCount, "\n\n\t---Invalid Option---\n\n");
@@ -55,6 +55,7 @@ public class SimpleTypingTest {
     /*
      * EFFECTS: displays the main menu 
      */
+    @SuppressWarnings("lineLength")
     public void displayMainMenu() {
         System.out.println("\nSimpleTypingTest:\n\t(1) Start a test\n\t(2) View past statistics\n\t(3) View Graph\n\t(4) Quit");
     }
@@ -116,6 +117,7 @@ public class SimpleTypingTest {
      * EFFECTS: handles calling all the necassary methods
      *           to complete a test from start to finish
      */
+    @SuppressWarnings("methodLength")
     public void startTestProcess() {
         int wordCount = chooseWordsCount();
         System.out.print("\n\n");
@@ -126,9 +128,9 @@ public class SimpleTypingTest {
         System.out.println("Sentence: " + randomSentence);
 
         System.out.println("\nStarting in 5 seconds.");
-        try{
+        try {
             Thread.sleep(5000);
-        } catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         System.out.println("Start!\n");
@@ -137,7 +139,7 @@ public class SimpleTypingTest {
         String userSentence = readUserInput(totalDuration);
         long end = System.currentTimeMillis();
         int userDuration = (int) TimeUnit.MILLISECONDS.toSeconds(end - start);
-        if (userSentence.equals("")){
+        if (userSentence.equals("")) {
             System.out.println("\t---No sentence recorded--\n"); 
             startupSequence();
             return;
