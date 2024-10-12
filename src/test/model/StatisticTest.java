@@ -6,7 +6,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class StatisticTest {
+
+    // Test object
     private Statistic stat; 
+
+    // Constants
+    private final String red = "\u001B[31m";
+    private final String green = "\u001B[32m";
+    private final String original = "\u001B[0m";
+
+
+    // Dummy values
     private final String expectedSentence = "abc";
     private final String userSentence = "abd";
     private final int totalDuration = 30;
@@ -15,16 +25,10 @@ class StatisticTest {
     private final int accuracy = (int)(((double) 2 / (double) 3) * 100.0);
     private final int wordsTyped = 1;
     private final char worstLetter = 'c';
+    private final String diff = "\tExpected Sentence: " + expectedSentence + "\n\t"
+        + "Your Sentence:     "
+        + green + "a" + green + "b" + red + "d" + original;
 
-
-
-    private final String red = "\u001B[31m";
-    private final String green = "\u001B[32m";
-    private final String original = "\u001B[0m";
-
-    private final String expectedDiff = "\tExpected Sentence: " + expectedSentence + "\n\t" 
-             + green + "ab" + red + "d" + original;
-    
 
     @BeforeEach
     void runBefore() {
@@ -47,17 +51,17 @@ class StatisticTest {
 
     @Test
     void testGenerateDiff() {
-        assertEquals(expectedDiff, stat.generateDiff());
+        assertEquals(diff, stat.generateDiff());
     }
 
     @Test
     void testFindWorstLetter() {
-        assertEquals('c', stat.findWorstLetter());
+        assertEquals(worstLetter, stat.findWorstLetter());
     }
 
     @Test
     void testCalculateWordsTyped() {
-        assertEquals(1, stat.calculateWordsTyped());
+        assertEquals(wordsTyped, stat.calculateWordsTyped());
     }
 
     @Test
@@ -74,8 +78,8 @@ class StatisticTest {
     @SuppressWarnings("LineLength")
     void testToString() {
         assertEquals(String.format(
-                "Statistic:\n \tTime Taken: %d\n \tWPM: %d\n \tAccuracy: %d%%\n \tWords Typed: %d\n \tWorst Letter: %s\n\n %s", 
-                userDuration, wpm, accuracy, wordsTyped, worstLetter, expectedDiff), 
+                "Statistic:\n\tTime Taken: %d\n\tWPM: %d\n\tAccuracy: %d%%\n\tWords Typed: %d\n\tWorst Letter: %s\n\n%s", 
+                userDuration, wpm, accuracy, wordsTyped, worstLetter, diff), 
                 stat.toString());
     }
 

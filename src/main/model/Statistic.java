@@ -61,7 +61,7 @@ public class Statistic {
         StringBuilder diff = new StringBuilder(
                 10 + expectedSentence.length() + 1 
                 + 8 + (5 * userSentence.length()) + 1);
-        diff.append("\tExpected Sentence: " + expectedSentence + "\n\t");
+        diff.append("\tExpected Sentence: " + expectedSentence + "\n\tYour Sentence:     ");
         boolean[] errors = getErrors(expectedSentence, userSentence);
         for (int i = 0; i < errors.length; i++) {
             if (errors[i]) { 
@@ -153,7 +153,7 @@ public class Statistic {
     public String toString() {
         String w = (worstLetter == ' ') ? "No mistakes" :  worstLetter + "";
         return String.format(
-                "Statistic:\n\tTime Taken: %d\n\tWPM: %d\n\tAccuracy: %d%%\n\tWords Typed: %d\n\tWorst Letter: %s\n\n %s", 
+                "Statistic:\n\tTime Taken: %d\n\tWPM: %d\n\tAccuracy: %d%%\n\tWords Typed: %d\n\tWorst Letter: %s\n\n%s", 
                 userDuration, wpm, accuracy, wordsTyped, w, diff);
     }
 
