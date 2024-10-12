@@ -23,7 +23,7 @@ class StatisticsTest {
     @Test
     void testConstructor() {
         assertEquals("abc", statistics.getStats().get(0).getExpectedSentence());
-        assertEquals("xyz", testStat2, statistics.getStats().get(1).getExpectedSentence());
+        assertEquals("xyz", statistics.getStats().get(1).getExpectedSentence());
     }
 
     @Test

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -78,6 +79,13 @@ public class SimpleTypingTest {
             }
             try {
                 System.out.print(">> ");
+                try {
+                    while (System.in.available() < 18) {
+                        Thread.sleep(200);
+                    }
+                    if (System.in.available())
+                } catch (Exception e) {
+                }
                 option = scanner.nextInt();
                 if ((option < min) || (option > max)) {
                     error = true;
@@ -87,6 +95,8 @@ public class SimpleTypingTest {
             } catch (InputMismatchException e) {
                 error = true;
                 scanner.next();
+            } catch (NoSuchElementException e) {
+                e.printStackTrace();
             }
         } while (error);
         return option;

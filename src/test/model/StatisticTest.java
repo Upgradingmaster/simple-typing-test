@@ -11,12 +11,19 @@ class StatisticTest {
     private final String userSentence = "abd";
     private final int totalDuration = 30;
     private final int userDuration = 15;
+    private final int wpm = (int)((double)1 / (double)(15 / 60.0));
+    private final int accuracy = (int)(((double) 2 / (double) 3) * 100.0);
+    private final int wordsTyped = 1;
+    private final char worstLetter = 'c';
+
+
 
     private final String red = "\u001B[31m";
     private final String green = "\u001B[32m";
     private final String original = "\u001B[0m";
 
-    private final String expectedDiff = "\tExpected Sentence: " + expectedSentence + "\n\t" + green + "ab" + red + "d";
+    private final String expectedDiff = "\tExpected Sentence: " + expectedSentence + "\n\t" + green + "ab" + red + "d" + original;
+    
 
     @BeforeEach
     void runBefore() {
@@ -44,7 +51,7 @@ class StatisticTest {
 
     @Test
     void testFindWorstLetter() {
-        assertEquals("c", stat.findWorstLetter());
+        assertEquals('c', stat.findWorstLetter());
     }
 
     @Test
@@ -54,20 +61,20 @@ class StatisticTest {
 
     @Test
     void testCalculateWpm() {
-        assertEquals((int)((double)1 / (double)(15 / 60)), stat.calculateWpm());
+        assertEquals(wpm, stat.calculateWpm());
     }
 
     @Test
     void testCalculateAccuracy() {
-        assertEquals((int)(((double)2 / (double)3) * 100), stat.calculateAccuracy());
+        assertEquals(accuracy, stat.calculateAccuracy());
     }
 
     @Test
     @SuppressWarnings("LineLength")
     void testToString() {
         assertEquals(String.format(
-                "Statistic:\n \tTime Taken:%d\n \tWPM:%d\n \tAccuracy:%d%%\n \tWords Typed:%d\n \tWorst Letter: %d\n\n %s", 
-                stat.getUserDuration(), stat.getWpm(), stat.getAccuracy(), stat.getWordsTyped(), stat.getWorstLetter(), stat.getDiff()), 
+                "Statistic:\n \tTime Taken: %d\n \tWPM: %d\n \tAccuracy: %d%%\n \tWords Typed: %d\n \tWorst Letter: %s\n\n %s", 
+                userDuration, wpm, accuracy, wordsTyped, worstLetter, expectedDiff), 
                 stat.toString());
     }
 

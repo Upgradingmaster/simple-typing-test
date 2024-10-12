@@ -93,7 +93,7 @@ public class Statistic {
             userChar = userSentence.charAt(i);
             expectedChar = expectedSentence.charAt(i);
             if (userChar != expectedChar) {
-                counts.put(userChar, counts.getOrDefault(userChar, 0) + 1);
+                counts.put(expectedChar, counts.getOrDefault(expectedChar, 0) + 1);
             }
         }
         if (counts.isEmpty()) {
