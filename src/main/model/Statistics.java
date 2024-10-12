@@ -22,7 +22,7 @@ public class Statistics {
 
     /*
      * REQUIRES: this
-     * EFFECTS: Builds a progress graph based of the WPM values of the current collection of statistics 
+     * EFFECTS: Builds and returns a progress graph based of the WPM values of the current collection of statistics 
      *          The Y-axis represents the WPM of a Statistic
      *          The X-axis essentially represents the order it was added to the list 
      * */
@@ -47,6 +47,7 @@ public class Statistics {
             } else {
                 graph.append(" ".repeat(margin));
             }
+                graph.append("|");
             if (y == minY) {
                 graph.append(("-".repeat(spacing) + "|").repeat(n));
                 break;

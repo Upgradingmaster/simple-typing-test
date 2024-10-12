@@ -2,18 +2,16 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
+// Unit Tests for the Statistics class
 class StatisticsTest {
     private Statistics statistics;
 
     private Statistic testStat1 = new Statistic("abc", "abd", 30, 15); // wpm = 4
     private Statistic testStat2 = new Statistic("xyz", "xaw", 18, 5); // wpm = 12
+
 
     @BeforeEach
     void runBefore() {
@@ -28,8 +26,17 @@ class StatisticsTest {
 
     @Test
     void testGenerateGraph() {
-        // Is essentially UI method which does not require testing
-        // as mentioned in the instructions
+        String graph = "   12|                     x\n"
+                     + "     |                      \n"
+                     + "     |                      \n"
+                     + "     |                      \n"
+                     + "     |                      \n"
+                     + "     |                      \n"
+                     + "     |                      \n"
+                     + "     |                      \n"
+                     + "     |          x           \n"
+                     + "    3|----------|----------|";
+        assertEquals(graph, statistics.generateGraph());
     }
 
 }

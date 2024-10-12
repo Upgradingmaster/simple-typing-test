@@ -7,8 +7,13 @@
 * The latest commit before the deadline had some bugs present, including a fatal one which prevented you from doing more than one test.
     * However, almost exactly one hour later, I pushed a change which fixed this bug. 
     * After this, the program seems to, at the least, satisfy all the user stories.
-    * The only other error should be the 2 failed tests.
-* Subsequent commits refactor the code, improve the UI (whitespace, etc.), and fixes the code to pass all unit tests.
+    * The only other error should be the 2 failed tests, and the missing y-axis in the graph
+* Subsequent commits:
+    * refactor the code
+    * improves the UI (whitespace, etc.)
+    * fixes the code to pass all unit tests (missing an ANSI color code in the test dummy var);
+    * adds the y-axis (forgot one line of code to append a '|' to the StringBuilder)
+    * adds a test for the generateGraph(), although it is UI related, for the sake of code coverage in the model package;
 
 ## About
 This is a basic typing test tool designed to be *lightweight*, fast, ***minimal***, and configurable.
