@@ -47,7 +47,7 @@ public class Statistics {
             } else {
                 graph.append(" ".repeat(margin));
             }
-                graph.append("|");
+            graph.append("|");
             if (y == minY) {
                 graph.append(("-".repeat(spacing) + "|").repeat(n));
                 break;

@@ -26,8 +26,8 @@ class StatisticTest {
     private final int wordsTyped = 1;
     private final char worstLetter = 'c';
     private final String diff = "\tExpected Sentence: " + expectedSentence + "\n\t"
-        + "Your Sentence:     "
-        + green + "a" + green + "b" + red + "d" + original;
+            + "Your Sentence:     "
+            + green + "a" + green + "b" + red + "d" + original;
 
 
     @BeforeEach
