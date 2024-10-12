@@ -70,6 +70,7 @@ public class SimpleTypingTest {
      * EFFECTS: wait for a valid user input in the given 
      *          range of integers
      */
+    @SuppressWarnings("methodLength")
     public int awaitUserInput(int min, int max, String errorString) {
         int option = 0;
         boolean error = false;
@@ -79,14 +80,7 @@ public class SimpleTypingTest {
             }
             try {
                 System.out.print(">> ");
-                try {
-                    while (System.in.available() < 18) {
-                        Thread.sleep(200);
-                    }
-                    if (System.in.available())
-                } catch (Exception e) {
-                }
-                option = scanner.nextInt();
+                option = new Scanner(System.in).nextInt();
                 if ((option < min) || (option > max)) {
                     error = true;
                     continue;
@@ -96,7 +90,7 @@ public class SimpleTypingTest {
                 error = true;
                 scanner.next();
             } catch (NoSuchElementException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
             }
         } while (error);
         return option;
@@ -221,7 +215,9 @@ public class SimpleTypingTest {
     public String readUserInput(int totalDuration) {
 
         Thread inputThread = new Thread(() -> {
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in)) ;
+            try {
                 // Workaraound to make readline non-blocking
                 while (System.in.available() < 1) {
                     Thread.sleep(200);

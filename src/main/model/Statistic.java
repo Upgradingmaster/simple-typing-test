@@ -98,7 +98,7 @@ public class Statistic {
         }
         if (counts.isEmpty()) {
             return ' ';
-        };
+        }
         char max = Collections.max(counts.entrySet(), Map.Entry.comparingByValue()).getKey();
         return max;
     }
@@ -151,10 +151,10 @@ public class Statistic {
     @Override
     @SuppressWarnings("LineLength")
     public String toString() {
-        String w = (worstLetter == ' ')? "No mistakes" :  worstLetter + "";
+        String w = (worstLetter == ' ') ? "No mistakes" :  worstLetter + "";
         return String.format(
                 "Statistic:\n\tTime Taken: %d\n\tWPM: %d\n\tAccuracy: %d%%\n\tWords Typed: %d\n\tWorst Letter: %s\n\n %s", 
-                userDuration, wpm, accuracy, wordsTyped ,w , diff);
+                userDuration, wpm, accuracy, wordsTyped, w, diff);
     }
 
 
