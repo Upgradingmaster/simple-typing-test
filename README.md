@@ -1,5 +1,11 @@
 # SimpleTypingTest
 
+## Important Notes: 
+- The diff will not be colored in command prompt (windows) due to it not supporting ANSI color codes.
+- The user has to press enter before the end of their test duration due to the nature of the standard streams.
+- Many other features aren't possible in the CLI application due to this. This will be heavily improved in the GUI version due to having easy access to key listeners.
+- As of the submission time, a lot of bugs are still present as I ran out of time.
+
 ## About
 This is a basic typing test tool designed to be *lightweight*, fast, ***minimal***, and configurable.
 It is intended for users who prefer a minimal and offline solution to tracking their typing skill.
