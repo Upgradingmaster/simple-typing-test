@@ -1,10 +1,14 @@
 # SimpleTypingTest
 
 ## Important Notes: 
-- The diff will not be colored in command prompt (windows) due to it not supporting ANSI color codes.
-- The user has to press enter before the end of their test duration due to the nature of the standard streams.
-- Many other features aren't possible in the CLI application due to this. This will be heavily improved in the GUI version due to having easy access to key listeners.
-- As of the submission time, a lot of bugs are still present as I ran out of time.
+* The diff will not be colored in command prompt (windows) due to it not supporting ANSI color codes. I am not using windows however it seems that powershell will work.
+* The user has to press enter before the end of their test duration for their input to be recorded, this is due to the nature of the standard java IOstream libraries.
+* Many other features aren't possible in the CLI application due to this. I hope to heavily improve this application in the GUI version as I will have access to key listeners.
+* The latest commit before the deadline had some bugs present, including a fatal one which prevented you from doing more than one test.
+    * However, almost exactly one hour later, I pushed a change which fixed this bug. 
+    * After this, the program seems to, at the least, satisfy all the user stories.
+    * The only other error should be the 2 failed tests.
+* Subsequent commits refactor the code, improve the UI (whitespace, etc.), and fixes the code to pass all unit tests.
 
 ## About
 This is a basic typing test tool designed to be *lightweight*, fast, ***minimal***, and configurable.
@@ -39,7 +43,7 @@ It is also the case that I recently have started training my typing speed.
 
 
 ## User Stories
-- As a user, I want to different variables to be recorded on each test I do. They should including words per minute, accuracy, the number of words I was able to type before I ran out of time, and the letter that I made the most mistakes on.
+- As a user, I want to different variables to be recorded on each test I do. They should include words per minute, accuracy, the number of words I was able to type before I ran out of time, and the letter that I made the most mistakes on.
 - As a user, I want to be able to store the variables of each test I do.
 - As a user, I want to be able to view all the variables of a statistic, **both**, right after the test i.e. the variables of this test **and** later for some test I select.
 - As a user, I want to be able to view a list of all the 'Statistic's of my past tests.

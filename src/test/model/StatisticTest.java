@@ -22,7 +22,8 @@ class StatisticTest {
     private final String green = "\u001B[32m";
     private final String original = "\u001B[0m";
 
-    private final String expectedDiff = "\tExpected Sentence: " + expectedSentence + "\n\t" + green + "ab" + red + "d" + original;
+    private final String expectedDiff = "\tExpected Sentence: " + expectedSentence + "\n\t" 
+             + green + "ab" + red + "d" + original;
     
 
     @BeforeEach

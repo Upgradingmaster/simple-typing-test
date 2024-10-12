@@ -26,7 +26,7 @@ public class Statistics {
      *          The Y-axis represents the WPM of a Statistic
      *          The X-axis essentially represents the order it was added to the list 
      * */
-    @SuppressWarnings("methodLength")
+    @SuppressWarnings("methodLength") // Necessary
     public String generateGraph() {
         final int margin = 5;
         final int spacing = 10;

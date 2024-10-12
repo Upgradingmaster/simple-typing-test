@@ -20,24 +20,31 @@ import model.*;
 public class SimpleTypingTest {
     private Statistics stats = new Statistics();
 
-    private volatile boolean doneTyping = false;
-
     // Constants
+    private final String defaultError;
     private final int mainMenuOptionCount;
     private final String wordsFilePath;
-    private final int wordsFileMax;
-    private Scanner scanner;
+    private final int wordsMax;
+    private final int timeMax;
+    private final int countdownTime;
+    private final Scanner scanner;
+
 
     /*
      * MODIFIES: this
      * EFFECTS: initializes the variables
      *          starts the main appplication processes/methods
      */
-    public SimpleTypingTest(Scanner scanner) {
+    public SimpleTypingTest() {
+        defaultError = "\n\t---Invalid Selection---\n";
         mainMenuOptionCount = 4;
         wordsFilePath = "data/words.txt";
-        wordsFileMax = 25;
-        this.scanner = scanner;
+        wordsMax = 25;
+        timeMax = 30;
+        countdownTime = 5;
+        scanner = new Scanner(System.in);
+
+
         startupSequence();
 
     }
@@ -47,30 +54,31 @@ public class SimpleTypingTest {
      *          can be used to restart
      */
     public void startupSequence() {
-        //scanner = new Scanner(System.in);
         displayMainMenu();
-        int choice = awaitUserInput(1, mainMenuOptionCount, "\n\n\t---Invalid Option---\n\n");
+        int choice = awaitUserInput(1, mainMenuOptionCount, defaultError);
         handleMainMenuCases(choice);
     }
 
     /*
      * EFFECTS: displays the main menu 
      */
-    @SuppressWarnings("lineLength")
     public void displayMainMenu() {
-        System.out.println("\nSimpleTypingTest:\n\t(1) Start a test\n\t(2) View past statistics\n\t(3) View Graph\n\t(4) Quit");
+        System.out.println("\nSimpleTypingTest:\n" 
+                + "\t(1) Start a test\n" 
+                + "\t(2) View past statistics\n" 
+                + "\t(3) View Graph\n\t" 
+                + "(4) Quit");
     }
 
 
     /*
-     * REQUIRES: min and max values to define a range
-     *           min <= max
-     *           an error string to display to the user
+     * REQUIRES: min and max integer values to define a range of valid inputs,
+     *           min <= max ,
+     *           an error string to display to the user,
      *           when they input anything invalid
-     * EFFECTS: wait for a valid user input in the given 
+     * EFFECTS: wait for a valid user integer input in the given 
      *          range of integers
      */
-    @SuppressWarnings("methodLength")
     public int awaitUserInput(int min, int max, String errorString) {
         int option = 0;
         boolean error = false;
@@ -80,7 +88,7 @@ public class SimpleTypingTest {
             }
             try {
                 System.out.print(">> ");
-                option = new Scanner(System.in).nextInt();
+                option = scanner.nextInt();
                 if ((option < min) || (option > max)) {
                     error = true;
                     continue;
@@ -88,19 +96,17 @@ public class SimpleTypingTest {
                 error = false;
             } catch (InputMismatchException e) {
                 error = true;
-                scanner.next();
-            } catch (NoSuchElementException e) {
-                //e.printStackTrace();
+                scanner.nextLine();
             }
         } while (error);
         return option;
     }
 
     /*
-     * REQUIRES: a valid option
+     * REQUIRES: a valid main menu option
+     *           between 1 and mainMenuOptionCount
      * EFFECTS: executes the respective method based
      *          on the user's choice
-     *          
      */
     public void handleMainMenuCases(int choice) {
         switch (choice) {
@@ -118,46 +124,36 @@ public class SimpleTypingTest {
     }
 
     /*
+     * MODIFIES: this
      * EFFECTS: handles calling all the necassary methods
-     *           to complete a test from start to finish
+     *          to complete a test from start to finish
      */
-    @SuppressWarnings("methodLength")
     public void startTestProcess() {
+        System.out.println();
         int wordCount = chooseWordsCount();
-        System.out.print("\n\n");
         int totalDuration = chooseTotalDuration();
-        System.out.print("\n\n");
+
+        System.out.print("\n");
 
         String randomSentence = generateRandomSentence(wordCount, new File(wordsFilePath));
         System.out.println("Sentence: " + randomSentence);
+        countdown(countdownTime);
 
-        System.out.println("\nStarting in 5 seconds.");
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Start!\n");
-        System.out.println("Sentence: " + randomSentence);
+        System.out.print("\n");
+
         long start = System.currentTimeMillis();
-        String userSentence = readUserInput(totalDuration);
+        String userSentence = startTest(totalDuration, randomSentence);
         long end = System.currentTimeMillis();
         int userDuration = (int) TimeUnit.MILLISECONDS.toSeconds(end - start);
-        if (userSentence.equals("")) {
-            System.out.println("\t---No sentence recorded--\n"); 
-            startupSequence();
-            return;
-        }
+
+        System.out.print("\n");
+
         Statistic statistic = new Statistic(randomSentence, userSentence, totalDuration, userDuration);
-
-        System.out.print("\n\n");
-
         displayStatistic(statistic);
         stats.getStats().add(statistic);
 
-        startupSequence();
+        startupSequence(); // Restart
     }
-
 
     /*
      * EFFECTS: prompt the user to choose
@@ -165,8 +161,8 @@ public class SimpleTypingTest {
      *          then returns this value
      */
     public int chooseWordsCount() {
-        System.out.println("How many words to test (Maximum of 25): ");
-        return awaitUserInput(1,25, "\n\n\t---Invalid Selection---\n\n");
+        System.out.println("How many words to test (Maximum of " + wordsMax + "): ");
+        return awaitUserInput(1, wordsMax, defaultError);
     }
 
     /*
@@ -175,15 +171,18 @@ public class SimpleTypingTest {
      *          then returns this value
      */
     public int chooseTotalDuration() {
-        System.out.println("How long should the test be in seconds (Maximum of 30s): ");
-        return awaitUserInput(1, 30, "\n\n\t---Invalid Selection---\n\n");
+        System.out.println("How long should the test be in seconds (Maximum of " + timeMax + "s): ");
+        return awaitUserInput(1, timeMax, defaultError);
     }
 
     /*
-     * EFFECTS: pick 'wordCount' random words from the 'file'
+     * REQUIRES: the file which stores random words,
+     *           integer n less than or equal to the number of 
+     *           words in the file
+     * EFFECTS: pick n random words from the 'file'
      *          then concatenate and return
      */
-    public String generateRandomSentence(int wordCount, File file) {
+    public String generateRandomSentence(int n, File file) {
         List<String> words = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -197,26 +196,72 @@ public class SimpleTypingTest {
 
         Collections.shuffle(words);
         String randomSentence = "";
-        for (int i = 0; i < wordCount; i++)  {
+        for (int i = 0; i < n; i++)  {
             randomSentence += words.get(i) + " ";
         }
         return randomSentence;
     }
 
+    /*
+     * REQUIRES: integer n, 
+     * EFFECTS: shows a countdown to 0 starting from n
+     *          essentially blocks the main thread 
+     *          to for n seconds
+     */
+    public void countdown(int n) {
+        for (int i = n; i > 0; i--) {
+            try {
+                System.out.print("\r");
+                System.out.print("Starting in " + i);
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println();
+    }
+
+    /*
+     * REQUIRES: the duration of the test after which to stop,
+     *           the sentence the user is trying to match
+     * EFFECTS:  prints the test ui elements
+     *           and starts reading the user input
+     */
+    public String startTest(int duration, String sentence) {
+        System.out.println("Start!");
+        System.out.println("-----");
+        System.out.println("Sentence: " + sentence);
+
+        String userSentence = readTestInput(duration);
+        this.userSentence = "";
+
+        if (userSentence.equals("")) {
+            System.out.println("---No sentence recorded---"); 
+            startupSequence();
+            return "";
+        } else { 
+            System.out.println("-----");
+        }
+
+        return userSentence;
+    }
 
 
+    // needed since it is accessed inside lambda
     private String userSentence = "";
 
     /*
-     * EFFECTS: reads the user input for the test
+     * REQUIRES: the duration of the test
+     * EFFECTS: reads the user input for the 
+     *          duration of the test
      *          and returns it
      */
     @SuppressWarnings("methodLength")
-    public String readUserInput(int totalDuration) {
+    public String readTestInput(int totalDuration) {
 
         Thread inputThread = new Thread(() -> {
 
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in)) ;
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             try {
                 // Workaraound to make readline non-blocking
                 while (System.in.available() < 1) {
@@ -237,7 +282,8 @@ public class SimpleTypingTest {
                 Thread.sleep(totalDuration * 1000); 
                 inputThread.interrupt();
             } catch (InterruptedException e) {
-                // Do nothing 
+                // do nothing as we intentionally interrupt
+                System.out.println(""); 
             }
         });
 
@@ -259,29 +305,34 @@ public class SimpleTypingTest {
      * EFFECTS:  displays a given statistic
      */
     public void displayStatistic(Statistic s) {
-        System.out.println("\n" + s.toString() + "\n");
+        System.out.print(s.toString() + "\n");
     }
 
 
-
     /*
+     * REQUIRES: this
      * EFFECTS: iterates over Statistics printing each one out
+     *          then prompts the user to display a specific one
      */
     public void viewAllStatistics() {
-        if (stats.getStats().size() == 0) { 
-            System.out.println("\t---No statistics to show---\n"); 
-            startupSequence();
-            return;
-        }
         ArrayList<Statistic> a = stats.getStats();
         int len = a.size();
-        for (int i = 0; i < len; i++) {
-            System.out.print("(" + i + ")");
-            displayStatistic(a.get(i));
+        if (len == 0) { 
+            System.out.print("\t---No statistics to show---\n"); 
+        } else {
+            for (int i = 0; i < len; i++) {
+                System.out.print("(" + (i + 1) + ") ");
+                displayStatistic(a.get(i));
+                System.out.print("\n");
+            }
+            System.out.print("Inspect a statistic (0 to go back to main menu): ");
+            int id = awaitUserInput(0, len, defaultError);
+            if (id != 0) {
+                System.out.print("\n");
+                displayStatistic(a.get(id - 1));
+            }
         }
-        System.out.println("Inspect a statistic: ");
-        int id = awaitUserInput(1, len, "\n\n\t---Invalid Selection---\n\n");
-        displayStatistic(a.get(id));
+        startupSequence(); // restart
     }
 
     /* 
@@ -290,11 +341,11 @@ public class SimpleTypingTest {
      */
     public void showGraph() {
         if (stats.getStats().size() == 0) { 
-            System.out.println("\t---No statistics to show---\n"); 
+            System.out.print("\t---No statistics to plot---\n"); 
         } else {
-            System.out.println(stats.generateGraph() + "\n");
+            System.out.print(stats.generateGraph() + "\n");
         }
-        startupSequence();
+        startupSequence(); // restart
     }
 
 }
