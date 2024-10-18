@@ -1,5 +1,6 @@
 package model;
 
+import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -31,7 +32,7 @@ public class Statistics {
         final int margin = 5;
         final int spacing = 10;
 
-        List<Integer> wpmY = stats.stream().map(s -> s.getWpm()).toList();
+        List<Integer> wpmY = stats.stream().map(Statistic::getWpm).collect(Collectors.toList());
         int maxY = Collections.max(wpmY);
         int minY = Collections.min(wpmY) - 1;
         int n = wpmY.size();
