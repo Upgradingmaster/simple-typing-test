@@ -19,6 +19,9 @@ public class Statistic {
     private final char worstLetter;
     private final String diff;
 
+
+
+
     // Constants
     //  Colors
     private final String red = "\u001B[31m";
@@ -144,18 +147,6 @@ public class Statistic {
         return (int)((double)correctCount / (double)(errors.length) * 100.0);
     }
 
-    /*
-     * REQUIRES: this
-     * EFFECTS: returns a string representation of the Statistic
-     */
-    @Override
-    @SuppressWarnings("LineLength")
-    public String toString() {
-        String w = (worstLetter == ' ') ? "No mistakes" :  worstLetter + "";
-        return String.format(
-                "Statistic:\n\tTime Taken: %d\n\tWPM: %d\n\tAccuracy: %d%%\n\tWords Typed: %d\n\tWorst Letter: %s\n\n%s", 
-                userDuration, wpm, accuracy, wordsTyped, w, diff);
-    }
 
 
     // Helper Functions
@@ -177,6 +168,46 @@ public class Statistic {
         return errArr;
     }
 
+
+    /*
+     * REQUIRES: this
+     * EFFECTS: checks if this, and another statistic are equivalent,
+     *          based on a criteria.
+     *
+     *          returns false if it fails the criteria, or
+     *          if it is compared to "null". or 
+     *          if it is compared to some non-Statistic object
+     *
+     *          otherwise returns true
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) { 
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Statistic o = (Statistic) obj;
+        return (this.expectedSentence.equals(o.expectedSentence)) &&
+            (this.userSentence.equals(o.userSentence)) &&
+            (this.totalDuration == o.totalDuration) &&
+            (this.userDuration == o.userDuration);
+    }
+
+    /*
+     * REQUIRES: this
+     * EFFECTS: returns a string representation of the Statistic
+     */
+    @Override
+    @SuppressWarnings("LineLength")
+    public String toString() {
+        String w = (worstLetter == ' ') ? "No mistakes" :  worstLetter + "";
+        return String.format(
+                "Statistic:\n\tTime Taken: %d\n\tWPM: %d\n\tAccuracy: %d%%\n\tWords Typed: %d\n\tWorst Letter: %s\n\n%s", 
+                userDuration, wpm, accuracy, wordsTyped, w, diff);
+    }
 
     // GETTERS
     public String getExpectedSentence() {
