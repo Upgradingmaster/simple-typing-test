@@ -48,11 +48,13 @@ It is also the case that I recently have started training my typing speed.
 
 
 ## User Stories
+### Phase 1
 - As a user, I want to different variables to be recorded on each test I do. They should include words per minute, accuracy, the number of words I was able to type before I ran out of time, and the letter that I made the most mistakes on.
 - As a user, I want to be able to store the variables of each test I do.
 - As a user, I want to be able to view all the variables of a statistic, **both**, right after the test i.e. the variables of this test **and** later for some test I select.
 - As a user, I want to be able to view a list of all the 'Statistic's of my past tests.
 - As a user, I want to be able to see a progress graph of the words per minute over the past tests.
 - As a user, When inspecting any given statistic I want to be able to visualize the mistakes using the colors red and green to highlight incorrect and correct letters 
-
-
+### Phase 2 
+- As a user, I want to have the option to save all of my statistics to a file.
+- As a user, I want to have the option to load my past statistics from a file.
