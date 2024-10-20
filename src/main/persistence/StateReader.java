@@ -1,27 +1,27 @@
 package persistence;
 
 import java.io.File;
+import java.io.IOException;
 
 import model.Statistics;
 
-// A class which reads and parses a json file, extracting appliction-level models
-public class JsonReader {
-    private String contents;
+// A class which reads and parses the state file in json, extracting appliction-level models
+public class StateReader {
+    private File file;
+
 
     /*
-     * REQUIRES: A valid path, relative or absolute, to a file
      * EFFECTS: Instantiates this class,
-     *          with the contents of the file at the given path.
+     *          with the file at the given path.
      */
-    public JsonReader(String path){
+    public StateReader(String path) throws IOException{
         // stub
     }
 
     /*
-     * REQUIRES: A file object
-     * EFFECTS: Instantiates this class, with the contents of the given file 
+     * EFFECTS: Instantiates this class, with the given file 
      */
-    public JsonReader(File file){
+    public StateReader(File file){
         // stub
     }
 
@@ -39,12 +39,15 @@ public class JsonReader {
      * REQUIRES: this
      * EFFECTS:  Returns the "Statistics" collection
      *           represented by all the "Statistic" json objects 
-     *           in the file this JSONReader is reading,
-     *           that is if they exist.
-     *           If they don't exist returns null
+     *           in the file associated with this object,
+     *           that is, if they exist.
+     *           If none exist returns null
      */
     public Statistics parseStatistics() {
         return new Statistics();
     }
 
+    public File getFile() {
+        return file;
+    }
 }
