@@ -12,10 +12,9 @@ import org.json.JSONObject;
 import model.Statistics;
 import model.Statistic;
 
-// A class which reads and parses the state file in json, extracting appliction-level models
+// A class which reads and parses the given file in json, extracting appliction-level models
 public class StateReader {
     private File file;
-
 
     /*
      * REQUIRES: must have the key "Statistics".
@@ -107,9 +106,6 @@ public class StateReader {
                 jo.getInt("totalDuration"),
                 jo.getInt("userDuration"));
     }
-
-
-
 
     public File getFile() {
         return file;
