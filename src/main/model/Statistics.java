@@ -65,6 +65,9 @@ public class Statistics {
     }
 
 
+    public void addStat(Statistic stat) {
+        this.stats.add(stat);
+    }
 
     // Gettters and Setters
 

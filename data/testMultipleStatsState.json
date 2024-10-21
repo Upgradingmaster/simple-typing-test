@@ -1,0 +1,16 @@
+{
+  "Statistics": [
+    {
+      "expectedSentence": "abc",
+      "userSentence":  "def",
+      "totalDuration": 10,
+      "userDuration": 2,
+    },
+    {
+      "expectedSentence": "ghi",
+      "userSentence":  "jkl",
+      "totalDuration": 5,
+      "userDuration": 1
+    }
+  ]
+}

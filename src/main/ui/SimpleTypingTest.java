@@ -150,7 +150,7 @@ public class SimpleTypingTest {
 
         Statistic statistic = new Statistic(randomSentence, userSentence, totalDuration, userDuration);
         displayStatistic(statistic);
-        stats.getStats().add(statistic);
+        stats.addStat(statistic);
 
         startupSequence(); // Restart
     }
