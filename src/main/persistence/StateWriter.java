@@ -1,6 +1,7 @@
 package persistence;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 import model.Statistics;
@@ -20,7 +21,7 @@ public class StateWriter {
      *          this class with a PrintWriter attached to the file
      *          Otherwise throws a FileNotFoundException
      * */
-    public StateWriter(File file) {
+    public StateWriter(File file) throws FileNotFoundException {
         // stub
     }
 
@@ -31,7 +32,7 @@ public class StateWriter {
      *          this class with a PrintWriter attached to the file
      *          Otherwise throws a FileNotFoundException
      * */
-    public StateWriter(String path) {
+    public StateWriter(String path) throws FileNotFoundException {
         // stub
     }
 
