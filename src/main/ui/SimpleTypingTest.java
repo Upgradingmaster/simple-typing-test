@@ -15,6 +15,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import model.*;
+import persistence.StateReader;
 
 // An application to test typing with random sentences and review statistics of tests
 public class SimpleTypingTest {
@@ -23,10 +24,18 @@ public class SimpleTypingTest {
     // Constants
     private final String defaultError;
     private final int mainMenuOptionCount;
+
+    private final String stateFilePath;
+
+
     private final String wordsFilePath;
     private final int wordsMax;
+
     private final int timeMax;
     private final int countdownTime;
+
+
+
     private final Scanner scanner;
 
 
@@ -37,7 +46,8 @@ public class SimpleTypingTest {
      */
     public SimpleTypingTest() {
         defaultError = "\n\t---Invalid Selection---\n";
-        mainMenuOptionCount = 4;
+        mainMenuOptionCount = 6;
+        stateFilePath = "data/testMultipleStatsState.json";
         wordsFilePath = "data/words.txt";
         wordsMax = 25;
         timeMax = 30;
@@ -55,7 +65,7 @@ public class SimpleTypingTest {
      */
     public void startupSequence() {
         displayMainMenu();
-        int choice = awaitUserInput(1, mainMenuOptionCount, defaultError);
+        int choice = awaitUserInput(0, mainMenuOptionCount - 1, defaultError);
         handleMainMenuCases(choice);
     }
 
@@ -66,8 +76,10 @@ public class SimpleTypingTest {
         System.out.println("\nSimpleTypingTest:\n" 
                 + "\t(1) Start a test\n" 
                 + "\t(2) View past statistics\n" 
-                + "\t(3) View Graph\n\t" 
-                + "(4) Quit");
+                + "\t(3) View Graph\n" 
+                + "\t(4) Save your statistics to a file\n" 
+                + "\t(5) Load past statistics from a file\n" 
+                + "\t(0) Quit");
     }
 
 
@@ -119,8 +131,32 @@ public class SimpleTypingTest {
             case 3: 
                 showGraph();
                 break;
-            case 4:System.exit(0);
+            case 4: 
+                //stub
+                break;
+            case 5: 
+                load();
+                break;
+            case 0: System.exit(0);
         } 
+    }
+
+
+
+    /* 
+     * MODIFIES: this.stats
+     * EFFECTS: Fetches all statistics stored at the constant `stateFilePath`
+     *          and updates the current sessions stats object
+     *          thus updating the current session's state.
+     * */
+    public void load(){
+        try {
+            this.stats = new StateReader(this.stateFilePath).parseStatistics();
+            startupSequence();
+        } catch (FileNotFoundException e) {
+            System.out.println("Can't locate the state file, " + 
+                    "either it is missing or it is specified incorrectly");
+        }
     }
 
     /*
