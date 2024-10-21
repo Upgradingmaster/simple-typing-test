@@ -190,10 +190,10 @@ public class Statistic {
         }
 
         Statistic o = (Statistic) obj;
-        return (this.expectedSentence.equals(o.expectedSentence)) &&
-            (this.userSentence.equals(o.userSentence)) &&
-            (this.totalDuration == o.totalDuration) &&
-            (this.userDuration == o.userDuration);
+        return (this.expectedSentence.equals(o.expectedSentence)) 
+            && (this.userSentence.equals(o.userSentence)) 
+            && (this.totalDuration == o.totalDuration) 
+            && (this.userDuration == o.userDuration);
     }
 
     /*
@@ -201,12 +201,22 @@ public class Statistic {
      * EFFECTS: returns a string representation of the Statistic
      */
     @Override
-    @SuppressWarnings("LineLength")
     public String toString() {
         String w = (worstLetter == ' ') ? "No mistakes" :  worstLetter + "";
         return String.format(
-                "Statistic:\n\tTime Taken: %d\n\tWPM: %d\n\tAccuracy: %d%%\n\tWords Typed: %d\n\tWorst Letter: %s\n\n%s", 
-                userDuration, wpm, accuracy, wordsTyped, w, diff);
+                "Statistic:\n"
+                + "\tTime Taken: %d\n"
+                + "\tWPM: %d\n"
+                + "\tAccuracy: %d%%\n"
+                + "\tWords Typed: %d\n"
+                + "\tWorst Letter: %s\n\n"
+                + "%s",
+                userDuration,
+                wpm,
+                accuracy, 
+                wordsTyped,
+                w,
+                diff);   
     }
 
     // GETTERS

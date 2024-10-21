@@ -24,9 +24,9 @@ public class StateReader {
      *          Only if the file exists and does not point to a directory
      *          otherwise throws a FileNotFoundException
      */
-    public StateReader(String path) throws FileNotFoundException{
+    public StateReader(String path) throws FileNotFoundException {
         File file = new File(path);
-        if (file.isFile() && file.exists()){
+        if (file.isFile() && file.exists()) {
             this.file = file;
         } else {
             throw new FileNotFoundException("File is invalid");
@@ -40,8 +40,8 @@ public class StateReader {
      *          Only if the file exists and does not point to a directory
      *          otherwise throws a FileNotFoundException
      */
-    public StateReader(File file) throws FileNotFoundException{
-        if (file.isFile() && file.exists()){
+    public StateReader(File file) throws FileNotFoundException {
+        if (file.isFile() && file.exists()) {
             this.file = file;
         } else {
             throw new FileNotFoundException("File is invalid");
@@ -55,7 +55,7 @@ public class StateReader {
      *          throws IOException if if Files.readString() fails to parse the file
      *
      */
-    public String parseContents() throws IOException{
+    public String parseContents() throws IOException {
         return Files.readString(this.file.toPath()).trim();
     }
 
@@ -86,8 +86,8 @@ public class StateReader {
         }
         
         Statistics statistics = new Statistics();
-        for (Object o : statisticsJsonArray){
-           statistics.addStat(jsonToStatistic((JSONObject) o));
+        for (Object o : statisticsJsonArray) {
+            statistics.addStat(jsonToStatistic((JSONObject) o));
         }
         if (statistics.getStats().size() == 0) {
             return null;

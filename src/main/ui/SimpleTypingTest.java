@@ -149,13 +149,13 @@ public class SimpleTypingTest {
      *          and updates the current sessions stats object
      *          thus updating the current session's state.
      * */
-    public void load(){
+    public void load() {
         try {
             this.stats = new StateReader(this.stateFilePath).parseStatistics();
             startupSequence();
         } catch (FileNotFoundException e) {
-            System.out.println("Can't locate the state file, " + 
-                    "either it is missing or it is specified incorrectly");
+            System.out.println("Can't locate the state file, " 
+                    + "either it is missing or it is specified incorrectly");
         }
     }
 
