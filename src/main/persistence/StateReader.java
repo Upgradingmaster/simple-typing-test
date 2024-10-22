@@ -16,21 +16,6 @@ import model.Statistic;
 public class StateReader {
     private File file;
 
-    /*
-     * REQUIRES: must have the key "Statistics".
-     * MODIFIES: this
-     * EFFECTS: Instantiates this class, with the file at the given path.
-     *          Only if the file exists and does not point to a directory
-     *          otherwise throws a FileNotFoundException
-     */
-    public StateReader(String path) throws FileNotFoundException {
-        File file = new File(path);
-        if (file.isFile() && file.exists()) {
-            this.file = file;
-        } else {
-            throw new FileNotFoundException("File is invalid");
-        }
-    }
 
     /*
      * REQUIRES: the file must have the key "Statistics".
@@ -47,6 +32,21 @@ public class StateReader {
         }
     }
 
+    /*
+     * REQUIRES: must have the key "Statistics".
+     * MODIFIES: this
+     * EFFECTS: Instantiates this class, with the file at the given path.
+     *          Only if the file exists and does not point to a directory
+     *          otherwise throws a FileNotFoundException
+     */
+    public StateReader(String path) throws FileNotFoundException {
+        File file = new File(path);
+        if (file.isFile() && file.exists()) {
+            this.file = file;
+        } else {
+            throw new FileNotFoundException("File is invalid");
+        }
+    }
 
     /*
      * REQUIRES: this 
@@ -65,7 +65,8 @@ public class StateReader {
      *           represented by all the "Statistic" json objects 
      *           in the file associated with this object,
      *           that is, if they exist.
-     *           If none exist, or if there is an error parsing the file
+     *
+     *           If there is an error parsing the file
      *           returns null
      */
     public Statistics parseStatistics() {
@@ -87,9 +88,6 @@ public class StateReader {
         Statistics statistics = new Statistics();
         for (Object o : statisticsJsonArray) {
             statistics.addStat(jsonToStatistic((JSONObject) o));
-        }
-        if (statistics.getStats().size() == 0) {
-            return null;
         }
         return statistics;
     }

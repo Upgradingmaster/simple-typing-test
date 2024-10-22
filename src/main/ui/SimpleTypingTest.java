@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 import model.*;
 import persistence.StateReader;
+import persistence.StateWriter;
 
 // An application to test typing with random sentences and review statistics of tests
 public class SimpleTypingTest {
@@ -47,32 +48,41 @@ public class SimpleTypingTest {
     public SimpleTypingTest() {
         defaultError = "\n\t---Invalid Selection---\n";
         mainMenuOptionCount = 6;
-        stateFilePath = "data/testMultipleStatsState.json";
+        stateFilePath = "data/state.json";
         wordsFilePath = "data/words.txt";
         wordsMax = 25;
         timeMax = 30;
         countdownTime = 5;
         scanner = new Scanner(System.in);
 
-
-        startupSequence();
-
+        run();
     }
 
+
     /*
-     * EFFECTS: starts the main appplication processes/methods,
-     *          can be used to restart
+     * EFFECTS: keeps the program running until 
+     *          user quits i.e. System.exit(0)
      */
-    public void startupSequence() {
-        displayMainMenu();
+    public void run(){
+        while(true) {
+            spawnMenu();
+        }
+    }
+
+
+    /*
+     * EFFECTS: displays the main menu and waits for a selection
+     */
+    public void spawnMenu() {
+        printMenuOptions();
         int choice = awaitUserInput(0, mainMenuOptionCount - 1, defaultError);
         handleMainMenuCases(choice);
     }
 
     /*
-     * EFFECTS: displays the main menu 
+     * EFFECTS: print the main menu 
      */
-    public void displayMainMenu() {
+    public void printMenuOptions() {
         System.out.println("\nSimpleTypingTest:\n" 
                 + "\t(1) Start a test\n" 
                 + "\t(2) View past statistics\n" 
@@ -132,7 +142,7 @@ public class SimpleTypingTest {
                 showGraph();
                 break;
             case 4: 
-                //stub
+                save();
                 break;
             case 5: 
                 load();
@@ -143,6 +153,17 @@ public class SimpleTypingTest {
 
 
 
+    public void save(){
+        try {
+            StateWriter sw = new StateWriter(this.stateFilePath);
+            sw.write(this.stats); // always returns true as its open
+            sw.close();
+            System.out.println("\nSaved statistics to: " + this.stateFilePath);
+        } catch (FileNotFoundException e) {
+            System.out.println("Can't locate the state file, " 
+                    + "either it is missing or it is specified incorrectly");
+        }
+    }
     /* 
      * MODIFIES: this.stats
      * EFFECTS: Fetches all statistics stored at the constant `stateFilePath`
@@ -152,7 +173,7 @@ public class SimpleTypingTest {
     public void load() {
         try {
             this.stats = new StateReader(this.stateFilePath).parseStatistics();
-            startupSequence();
+            System.out.println("\nLoaded statistics from: " + this.stateFilePath);
         } catch (FileNotFoundException e) {
             System.out.println("Can't locate the state file, " 
                     + "either it is missing or it is specified incorrectly");
@@ -180,6 +201,7 @@ public class SimpleTypingTest {
         long start = System.currentTimeMillis();
         String userSentence = startTest(totalDuration, randomSentence);
         long end = System.currentTimeMillis();
+        if(userSentence == "") return;
         int userDuration = (int) TimeUnit.MILLISECONDS.toSeconds(end - start);
 
         System.out.print("\n");
@@ -187,8 +209,6 @@ public class SimpleTypingTest {
         Statistic statistic = new Statistic(randomSentence, userSentence, totalDuration, userDuration);
         displayStatistic(statistic);
         stats.addStat(statistic);
-
-        startupSequence(); // Restart
     }
 
     /*
@@ -235,7 +255,7 @@ public class SimpleTypingTest {
         for (int i = 0; i < n; i++)  {
             randomSentence += words.get(i) + " ";
         }
-        return randomSentence;
+        return randomSentence.stripTrailing();
     }
 
     /*
@@ -273,8 +293,6 @@ public class SimpleTypingTest {
 
         if (userSentence.equals("")) {
             System.out.println("---No sentence recorded---"); 
-            startupSequence();
-            return "";
         } else { 
             System.out.println("-----");
         }
@@ -368,7 +386,6 @@ public class SimpleTypingTest {
                 displayStatistic(a.get(id - 1));
             }
         }
-        startupSequence(); // restart
     }
 
     /* 
@@ -381,7 +398,6 @@ public class SimpleTypingTest {
         } else {
             System.out.print(stats.generateGraph() + "\n");
         }
-        startupSequence(); // restart
     }
 
 }
