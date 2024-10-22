@@ -63,8 +63,8 @@ public class SimpleTypingTest {
      * EFFECTS: keeps the program running until 
      *          user quits i.e. System.exit(0)
      */
-    public void run(){
-        while(true) {
+    public void run() {
+        while (true) {
             spawnMenu();
         }
     }
@@ -153,7 +153,7 @@ public class SimpleTypingTest {
 
 
 
-    public void save(){
+    public void save() {
         try {
             StateWriter sw = new StateWriter(this.stateFilePath);
             sw.write(this.stats); // always returns true as its open
@@ -164,6 +164,7 @@ public class SimpleTypingTest {
                     + "either it is missing or it is specified incorrectly");
         }
     }
+
     /* 
      * MODIFIES: this.stats
      * EFFECTS: Fetches all statistics stored at the constant `stateFilePath`
@@ -201,7 +202,9 @@ public class SimpleTypingTest {
         long start = System.currentTimeMillis();
         String userSentence = startTest(totalDuration, randomSentence);
         long end = System.currentTimeMillis();
-        if(userSentence == "") return;
+        if (userSentence == "") {
+            return;
+        }
         int userDuration = (int) TimeUnit.MILLISECONDS.toSeconds(end - start);
 
         System.out.print("\n");

@@ -77,8 +77,8 @@ public class Statistics implements IJsonArray {
     @Override
     public JSONArray toJsonArray() {
         JSONArray jsonArray = new JSONArray();
-        for (Statistic s : this.stats){
-           jsonArray.put(s.toJsonObject());
+        for (Statistic s : this.stats) {
+            jsonArray.put(s.toJsonObject());
         }
         return jsonArray;
     }

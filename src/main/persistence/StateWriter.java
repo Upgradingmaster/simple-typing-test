@@ -69,7 +69,7 @@ public class StateWriter {
             e.printStackTrace();
             return false;
         }
-    };
+    }
 
     /*
      * MODIFIES: this.pw
@@ -78,7 +78,7 @@ public class StateWriter {
     public void close() {
         this.pw.close();
         this.pw = null;
-    };
+    }
 
     /*
      * MODIFIES: the file this.pw is writing to
@@ -89,7 +89,7 @@ public class StateWriter {
      *          Otherwise, returns false
      * */
     public boolean write(Statistics statistics) {
-        if (this.pw == null){
+        if (this.pw == null) {
             return false;
         }
         JSONArray jsonArrayOfStatistics = statistics.toJsonArray();
@@ -104,7 +104,7 @@ public class StateWriter {
      * MODIFIES: the file this.pw is associated with
      * EFFECTS: Write the jsonObject as a string to the file
      * */
-    public void writeJsonObject(JSONObject jsonObject){
+    public void writeJsonObject(JSONObject jsonObject) {
         this.pw.print(jsonObject.toString());
     }
 }

@@ -9,7 +9,7 @@ import org.json.JSONObject;
 import persistence.IJsonObject;
 
 // Represents a single Statistic for a test done by the user
-public class Statistic implements IJsonObject{
+public class Statistic implements IJsonObject {
     // Information about the test
     private final String expectedSentence;
     private final String userSentence;
@@ -227,6 +227,7 @@ public class Statistic implements IJsonObject{
                 w,
                 diff);   
     }
+
     @Override
     public JSONObject toJsonObject() {
         JSONObject json = new JSONObject();
