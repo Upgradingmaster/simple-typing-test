@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test; 
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.File;
 
 import model.Statistic;
@@ -22,8 +23,8 @@ class StateWriterTest {
         } catch (FileNotFoundException e) { }
 
         try{
-            stateWriter = new StateWriter("dir/");
-            fail("Accepted invalid path");
+            stateWriter = new StateWriter("data/");
+            fail("Accepted directory");
         } catch (FileNotFoundException e) { }
 
         try{
@@ -32,8 +33,8 @@ class StateWriterTest {
         } catch (FileNotFoundException e) { }
 
         try{
-            stateWriter = new StateWriter(new File("dir/"));
-            fail("Accepted invalid path");
+            stateWriter = new StateWriter(new File("data/"));
+            fail("Accepted directory");
         } catch (FileNotFoundException e) { }
     }
     
@@ -42,13 +43,13 @@ class StateWriterTest {
         StateWriter stateWriter;
 
         try {
-            stateWriter = new StateWriter("dir/state.json");
+            stateWriter = new StateWriter("data/state.json");
         } catch (FileNotFoundException e) {
             fail("Didn't accept valid path");
         }
 
         try {
-            stateWriter = new StateWriter(new File("dir/state.json"));
+            stateWriter = new StateWriter(new File("data/state.json"));
         } catch (FileNotFoundException e) {
             fail("Didn't accept valid path");
         }
@@ -60,13 +61,13 @@ class StateWriterTest {
         StateWriter sw;
         StateReader sr;
         try {
-            sw = new StateWriter("dir/state.json");
+            sw = new StateWriter("data/state.json");
         } catch (FileNotFoundException e) {
             fail("StateWriter: Constructor didn't accept valid path");
             return;
         }
         try {
-            sr = new StateReader("dir/state.json");
+            sr = new StateReader("data/state.json");
         } catch (FileNotFoundException e) {
             fail("StateReader: Constructor didn't accept valid path");
             return;
@@ -74,7 +75,9 @@ class StateWriterTest {
 
         sw.write(new Statistics());
         sw.close();
+
         Statistics s = sr.parseStatistics();
+
         assertTrue(s.getStats().isEmpty());
     }
 
@@ -83,13 +86,13 @@ class StateWriterTest {
         StateWriter sw;
         StateReader sr;
         try {
-            sw = new StateWriter("dir/state.json");
+            sw = new StateWriter("data/state.json");
         } catch (FileNotFoundException e) {
             fail("StateWriter: Constructor didn't accept valid path");
             return;
         }
         try {
-            sr = new StateReader("dir/state.json");
+            sr = new StateReader("data/state.json");
         } catch (FileNotFoundException e) {
             fail("StateReader: Constructor didn't accept valid path");
             return;
@@ -98,7 +101,7 @@ class StateWriterTest {
         Statistic s1 = new Statistic("abc", "def", 20, 10);
         Statistic s2 = new Statistic("ghi", "jkl", 10, 5);
 
-        sw.write(new Statistics());
+        sw.write(new Statistics(s1, s2));
         sw.close();
         Statistics s = sr.parseStatistics();
         

@@ -1,13 +1,18 @@
 package model;
 
 import java.util.stream.Collectors;
+
+import org.json.JSONArray;
+
+import persistence.IJsonArray;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 // A collection of Statistic objects
-public class Statistics {
+public class Statistics implements IJsonArray {
 
     private ArrayList<Statistic> stats = new ArrayList<>();
 
@@ -69,6 +74,14 @@ public class Statistics {
         this.stats.add(stat);
     }
 
+    @Override
+    public JSONArray toJsonArray() {
+        JSONArray jsonArray = new JSONArray();
+        for (Statistic s : this.stats){
+           jsonArray.put(s.toJsonObject());
+        }
+        return jsonArray;
+    }
     // Gettters and Setters
 
     public ArrayList<Statistic> getStats() {
@@ -78,6 +91,8 @@ public class Statistics {
     public void setStats(ArrayList<Statistic> stats) {
         this.stats = stats;
     }
+
+
 
 
 }

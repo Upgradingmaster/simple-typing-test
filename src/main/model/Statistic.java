@@ -4,8 +4,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.JSONObject;
+
+import persistence.IJsonObject;
+
 // Represents a single Statistic for a test done by the user
-public class Statistic {
+public class Statistic implements IJsonObject{
     // Information about the test
     private final String expectedSentence;
     private final String userSentence;
@@ -92,7 +96,8 @@ public class Statistic {
         char expectedChar;
 
         // Populate map with the incorrect characters and their respective frequency
-        for (int i = 0; i < userSentence.length(); i++) {
+        int len = Math.min(userSentence.length(), expectedSentence.length());
+        for (int i = 0; i < len; i++) {
             userChar = userSentence.charAt(i);
             expectedChar = expectedSentence.charAt(i);
             if (userChar != expectedChar) {
@@ -100,9 +105,13 @@ public class Statistic {
             }
         }
         if (counts.isEmpty()) {
-            return ' ';
+            return 0; 
         }
+        // TODO: check for if all error counts are the same -> return  some error
         char max = Collections.max(counts.entrySet(), Map.Entry.comparingByValue()).getKey();
+        if (max == ' ') {
+            max = '_';
+        }
         return max;
     }
 
@@ -202,7 +211,7 @@ public class Statistic {
      */
     @Override
     public String toString() {
-        String w = (worstLetter == ' ') ? "No mistakes" :  worstLetter + "";
+        String w = (worstLetter == 0) ? "No mistakes" :  worstLetter + "";
         return String.format(
                 "Statistic:\n"
                 + "\tTime Taken: %d\n"
@@ -217,6 +226,15 @@ public class Statistic {
                 wordsTyped,
                 w,
                 diff);   
+    }
+    @Override
+    public JSONObject toJsonObject() {
+        JSONObject json = new JSONObject();
+        json.put("expectedSentence", this.expectedSentence);
+        json.put("userSentence", this.userSentence);
+        json.put("totalDuration", this.totalDuration);
+        json.put("userDuration", this.userDuration);
+        return json;
     }
 
     // GETTERS
@@ -255,5 +273,7 @@ public class Statistic {
     public String getDiff() {
         return diff;
     }
+
+
 
 }

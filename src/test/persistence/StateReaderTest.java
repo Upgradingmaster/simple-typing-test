@@ -1,15 +1,18 @@
 package persistence;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test; 
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.File;
+
 import model.Statistic;
 import model.Statistics;
 
-import org.junit.jupiter.api.Test; 
 
 class StateReaderTest {
 
@@ -80,7 +83,7 @@ class StateReaderTest {
         }  catch (IOException e)  { 
             fail("Constructor failed");
         }
-            assertNull(stateReader.parseStatistics());
+            assertTrue(stateReader.parseStatistics().getStats().isEmpty());
     }
 
     @Test

@@ -1,5 +1,7 @@
 package persistence;
 
+import org.json.JSONObject;
+
 public interface IJsonObject {
-    public void toJsonObject();
+    public JSONObject toJsonObject();
 }

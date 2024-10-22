@@ -1,5 +1,7 @@
 package persistence;
 
+import org.json.JSONArray;
+
 public interface IJsonArray {
-    public void toJsonArray();
+    public JSONArray toJsonArray();
 }
