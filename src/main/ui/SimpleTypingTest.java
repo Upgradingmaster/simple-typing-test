@@ -21,43 +21,30 @@ import persistence.StateWriter;
 // An application to test typing with random sentences and review statistics of tests
 public class SimpleTypingTest {
     private Statistics stats = new Statistics();
+    private Scanner scanner;
 
     // Constants
-    private final String defaultError;
-    private final int mainMenuOptionCount;
+    private final String defaultError = "\n\t---Invalid Selection---\n";
+    private final int mainMenuOptionCount = 6;
 
-    private final String stateFilePath;
+    private final int countdownTime = 5;
+    private final String wordsFilePath = "data/words.txt";
+    private final int wordsMax = 25;
+    private final int timeMax = 30;
 
-
-    private final String wordsFilePath;
-    private final int wordsMax;
-
-    private final int timeMax;
-    private final int countdownTime;
+    private final String stateFilePath = "data/state.json";
 
 
-
-    private final Scanner scanner;
 
 
     /*
      * MODIFIES: this
-     * EFFECTS: initializes the variables
-     *          starts the main appplication processes/methods
+     * EFFECTS: starts the main appplication process
      */
     public SimpleTypingTest() {
-        defaultError = "\n\t---Invalid Selection---\n";
-        mainMenuOptionCount = 6;
-        stateFilePath = "data/state.json";
-        wordsFilePath = "data/words.txt";
-        wordsMax = 25;
-        timeMax = 30;
-        countdownTime = 5;
         scanner = new Scanner(System.in);
-
         run();
     }
-
 
     /*
      * EFFECTS: keeps the program running until 
