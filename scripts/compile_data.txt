@@ -1,0 +1,12 @@
+./src/main/model/Statistic.java
+./src/main/model/Statistics.java
+./src/main/persistence/StateReader.java
+./src/main/persistence/StateWriter.java
+./src/main/persistence/IJsonArray.java
+./src/main/persistence/IJsonObject.java
+./src/main/ui/SimpleTypingTest.java
+./src/main/ui/Main.java
+./src/test/model/StatisticsTest.java
+./src/test/model/StatisticTest.java
+./src/test/persistence/StateWriterTest.java
+./src/test/persistence/StateReaderTest.java
