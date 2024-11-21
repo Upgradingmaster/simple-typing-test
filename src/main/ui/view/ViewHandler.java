@@ -11,8 +11,15 @@ import javax.swing.JSplitPane;
 import model.Statistic;
 import model.Statistics;
 
-// Top level Handler for managing state and user interaction with the various view
+// Top level Handler for managing state and user interaction with the various views
 class ViewHandler implements PropertyChangeListener {
+
+    private enum MainViewState {
+        HOME, GRAPH, TEST
+    }
+
+    private MainViewState mainViewState;
+
     //private boolean graphState = false;
     private JFrame frame;
 
@@ -21,13 +28,14 @@ class ViewHandler implements PropertyChangeListener {
     private JSplitPane splitPane; 
 
     ViewHandler(JFrame frame) {
+        mainViewState = MainViewState.HOME;
         this.frame = frame;
     }
 
     // EFFECTS: Initializes the primary child views
-    public void initViews() {
+    public void initViews(Services services) {
         //setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
-        mainView = new MainView();
+        mainView = new MainView(services);
         statisticView = new StatisticsView(new StatisticsController());
 
         mainView.setMinimumSize(new Dimension((int)(frame.getWidth() * 0.5), frame.getHeight()));
@@ -50,29 +58,44 @@ class ViewHandler implements PropertyChangeListener {
     }
 
 
-    // EFFECTS: Swaps the Main Panel with the GraphView or the MainMenuView
-    public void toggleGraph() {
-        mainView.toggleView();
-        //if (graphState) {
-        //    showMainMenu();
-        //} else {
-        //    showGraph();
-        //}
-        //graphState = !graphState;
-    }
-
-
-    // REQUIRES: !graphState
-    // EFFECTS: Sets the main panel to display the main menu
-    //private void showHome() {
+    //// EFFECTS: Swaps the Main Panel with the GraphView or the MainMenuView
+    //public void toggleGraph() {
+    //    switch (mainViewState) {
+    //        case HOME: 
+    //            mainView.showHomeView(); 
+    //            break;
+    //        case GRAPH: 
+    //            mainView.showHomeView(); 
+    //            break;
+    //        case  
+    //            mainView.showHomeView(); 
+    //            break;
+    //
+    //    }
+    //
+    //
+    //
+    //
+    //    if (graphState) {
     //        mainView.showHomeView();
+    //    } else {
+    //        mainView.showGraphView();
+    //    }
+    //    graphState = !graphState;
     //}
-
-
-    // REQUIRES: graphState
-    // EFFECTS: Sets the main panel to display the graph
-    //private void showGraph() {
-    //    mainView.showGraphView();
+    //
+    //
+    //// REQUIRES: !graphState
+    //// EFFECTS: Sets the main panel to display the main menu
+    //private void renderMainMenu() {
+    //
+    //}
+    //
+    //
+    //// REQUIRES: graphState
+    //// EFFECTS: Sets the main panel to display the graph
+    //private void renderGraph() {
+    //
     //}
 
 
