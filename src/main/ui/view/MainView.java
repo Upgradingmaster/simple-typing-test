@@ -19,7 +19,7 @@ public class MainView extends JPanel {
         initCardLayout();
     }
 
-    //EFFECTS: Defines the to child views, Home and Graph
+    //EFFECTS: Defines the two child views, Home and Graph
     private void initViews() {
         homeView = new HomeView();
         graphView = new GraphView();
