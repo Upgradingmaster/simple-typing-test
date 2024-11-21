@@ -44,9 +44,10 @@ public class SimpleTypingTest {
     public SimpleTypingTest() {
         scanner = new Scanner(System.in);
         state = new State();
-        //run();
+        Services services = new Services(state);
+
         SwingUtilities.invokeLater(() -> {
-            MainFrame frame = new MainFrame();
+            MainFrame frame = new MainFrame(state, services);
             frame.setVisible(true);
         });
     }

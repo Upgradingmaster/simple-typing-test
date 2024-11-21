@@ -25,12 +25,13 @@ public class MainFrame extends JFrame {
     // EFFECTS: Sets the top-level parameters
     //          Sets the initiale position and size
     //          Registers children Panels
-    MainFrame() {
+    MainFrame(State state, Services services) {
         TITLE = "Simple Typing Test";
         this.viewHandler = new ViewHandler(this);
+        state.addPropertyChangeListener(viewHandler);
         initMain();
         initLayout();
-        initViews();
+        initViews(services);
     }
 
     // EFFECTS: Sets the top-level parameters
@@ -46,7 +47,7 @@ public class MainFrame extends JFrame {
     }
 
     // EFFECTS: Registers the child panels to the frame
-    private void initViews() {
-        viewHandler.initViews();
+    private void initViews(Services services) {
+        viewHandler.initViews(services);
     }
 }

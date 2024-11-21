@@ -4,39 +4,47 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 // Represents the main view which will either be the main menu or the graph
 public class MainView extends JPanel {
+
+    private CardLayout cardLayout;
     private HomeView homeView;
     private GraphView graphView;
-    private CardLayout cardLayout;
+    private TestView testView;
 
-    MainView() {
-        initViews();
-        initCardLayout();
+    private JButton switchButton;
+
+    MainView(Services services) {
+        initViews(services);
+        setupCardLayout();
     }
 
+
     //EFFECTS: Defines the two child views, Home and Graph
-    private void initViews() {
-        homeView = new HomeView();
-        graphView = new GraphView();
+    private void initViews(Services services) {
+        homeView = new HomeView(new HomeController(this, services));
+        graphView = new GraphView(new GraphController(this, services));
+        testView = new TestView(new TestController(this, services));
     }
 
     // EFFECTS: Registers the two views into the card layout
     //          showing Home as default
-    private void initCardLayout() {
+    private void setupCardLayout() {
         cardLayout = new CardLayout();
-        setLayout(cardLayout);
+        this.setLayout(cardLayout);
         this.add(homeView, "Home");
         this.add(graphView, "Graph");
+        this.add(testView, "Test");
     }
 
     // EFFECTS: Sets the view to home 
     public void showHomeView() {
-        cardLayout.show(this, "Graph");
+        cardLayout.show(this, "Home");
     }
 
     // EFFECTS: Sets the view to graph
@@ -44,8 +52,8 @@ public class MainView extends JPanel {
         cardLayout.show(this, "Graph");
     }
 
-    // EFFECTS: Toggles the view from home to graph and vice versa
-    public void toggleView() {
-        cardLayout.next(this);
+    // EFFECTS: Sets the view to the test
+    public void showTestView() {
+        cardLayout.show(this, "Test");
     }
 }

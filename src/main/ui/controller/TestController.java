@@ -1,12 +1,12 @@
 package ui;
 
-public class GraphController {
+
+public class TestController {
     private Services state;
     private MainView parentView;
 
-    GraphController(MainView parentView, Services state){
+    TestController(MainView parentView, Services state){
         this.state = state;
         this.parentView = parentView;
     }
-
 }
