@@ -13,7 +13,7 @@ import model.Statistics;
 
 // Top level Handler for managing state and user interaction with the various view
 class ViewHandler implements PropertyChangeListener {
-    private boolean graphState = false;
+    //private boolean graphState = false;
     private JFrame frame;
 
     private MainView mainView;
@@ -52,27 +52,28 @@ class ViewHandler implements PropertyChangeListener {
 
     // EFFECTS: Swaps the Main Panel with the GraphView or the MainMenuView
     public void toggleGraph() {
-        if (graphState) {
-            renderMainMenu();
-        } else {
-            renderGraph();
-        }
-        graphState = !graphState;
+        mainView.toggleView();
+        //if (graphState) {
+        //    showMainMenu();
+        //} else {
+        //    showGraph();
+        //}
+        //graphState = !graphState;
     }
 
 
     // REQUIRES: !graphState
     // EFFECTS: Sets the main panel to display the main menu
-    private void renderMainMenu() {
-
-    }
+    //private void showHome() {
+    //        mainView.showHomeView();
+    //}
 
 
     // REQUIRES: graphState
     // EFFECTS: Sets the main panel to display the graph
-    private void renderGraph() {
-
-    }
+    //private void showGraph() {
+    //    mainView.showGraphView();
+    //}
 
 
     // EFFECTS: Handles ui updates for child views whenever state changes 
