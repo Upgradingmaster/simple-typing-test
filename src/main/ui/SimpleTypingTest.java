@@ -46,7 +46,8 @@ public class SimpleTypingTest {
         state = new State();
         //run();
         SwingUtilities.invokeLater(() -> {
-            new MainFrame().setVisible(true);
+            MainFrame frame = new MainFrame();
+            frame.setVisible(true);
         });
     }
 

@@ -15,11 +15,11 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.LineBorder;
 
-import ui.StatisticsView;
 
 // The Main UI Application Frame
 public class MainFrame extends JFrame {
     private final String TITLE;
+    private ViewHandler viewHandler;
 
 
     // EFFECTS: Sets the top-level parameters
@@ -27,13 +27,11 @@ public class MainFrame extends JFrame {
     //          Registers children Panels
     MainFrame() {
         TITLE = "Simple Typing Test";
+        this.viewHandler = new ViewHandler(this);
         initMain();
         initLayout();
         initViews();
     }
-
-
-
 
     // EFFECTS: Sets the top-level parameters
     private void initMain() {
@@ -49,20 +47,6 @@ public class MainFrame extends JFrame {
 
     // EFFECTS: Registers the child panels to the frame
     private void initViews() {
-
-        //setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
-        JPanel main = new MainView();
-        JPanel statistic = new StatisticsView(new StatisticsController());
-
-        main.setMinimumSize(new Dimension((int)(getWidth() * 0.5), getHeight()));
-        statistic.setMinimumSize(new Dimension((int)(getWidth() * 0.2), getHeight()));
-
-        //main.setBorder(new LineBorder(Color.RED, 2));
-        //statistic.setBorder(new LineBorder(Color.RED, 2));
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, main, statistic);
-        splitPane.setResizeWeight(0.8);
-        splitPane.setOneTouchExpandable(true);
-
-        add(splitPane);
+        viewHandler.initViews();
     }
 }
