@@ -14,13 +14,16 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-import model.*;
+import javax.swing.SwingUtilities;
+
+import model.Statistics;
+import model.Statistic;
 import persistence.StateReader;
 import persistence.StateWriter;
 
 // An application to test typing with random sentences and review statistics of tests
 public class SimpleTypingTest {
-    private Statistics stats = new Statistics();
+    private State state;
     private Scanner scanner;
 
     // Constants
@@ -34,16 +37,17 @@ public class SimpleTypingTest {
 
     private final String stateFilePath = "data/state.json";
 
-
-
-
     /*
      * MODIFIES: this
      * EFFECTS: starts the main appplication process
      */
     public SimpleTypingTest() {
         scanner = new Scanner(System.in);
-        run();
+        state = new State();
+        //run();
+        SwingUtilities.invokeLater(() -> {
+            new MainFrame().setVisible(true);
+        });
     }
 
     /*
@@ -143,7 +147,7 @@ public class SimpleTypingTest {
     public void save() {
         try {
             StateWriter sw = new StateWriter(this.stateFilePath);
-            sw.write(this.stats); // always returns true as its open
+            sw.write(this.state.getStats()); // always returns true as its open
             sw.close();
             System.out.println("\nSaved statistics to: " + this.stateFilePath);
         } catch (FileNotFoundException e) {
@@ -160,7 +164,7 @@ public class SimpleTypingTest {
      * */
     public void load() {
         try {
-            this.stats = new StateReader(this.stateFilePath).parseStatistics();
+            this.state.setStats(new StateReader(this.stateFilePath).parseStatistics());
             System.out.println("\nLoaded statistics from: " + this.stateFilePath);
         } catch (FileNotFoundException e) {
             System.out.println("Can't locate the state file, " 
@@ -198,7 +202,7 @@ public class SimpleTypingTest {
 
         Statistic statistic = new Statistic(randomSentence, userSentence, totalDuration, userDuration);
         displayStatistic(statistic);
-        stats.addStat(statistic);
+        this.state.addStat(statistic);
     }
 
     /*
@@ -359,7 +363,7 @@ public class SimpleTypingTest {
      *          then prompts the user to display a specific one
      */
     public void viewAllStatistics() {
-        ArrayList<Statistic> a = stats.getStats();
+        ArrayList<Statistic> a = this.state.getStats().getStatsArrayList();
         int len = a.size();
         if (len == 0) { 
             System.out.print("\t---No statistics to show---\n"); 
@@ -383,10 +387,10 @@ public class SimpleTypingTest {
      * EFFECTS: iterates over Statistics printing each one out
      */
     public void showGraph() {
-        if (stats.getStats().size() == 0) { 
+        if (this.state.getStats().getStatsArrayList().size() == 0) { 
             System.out.print("\t---No statistics to plot---\n"); 
         } else {
-            System.out.print(stats.generateGraph() + "\n");
+            System.out.print(this.state.getStats().generateGraph() + "\n");
         }
     }
 
