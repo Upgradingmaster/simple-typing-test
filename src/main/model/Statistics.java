@@ -82,9 +82,9 @@ public class Statistics implements IJsonArray {
         }
         return jsonArray;
     }
-    // Gettters and Setters
 
-    public ArrayList<Statistic> getStats() {
+    // Gettters and Setters
+    public ArrayList<Statistic> getStatsArrayList() {
         return stats;
     }
 

@@ -20,8 +20,8 @@ class StatisticsTest {
 
     @Test
     void testConstructor() {
-        assertEquals("abc", statistics.getStats().get(0).getExpectedSentence());
-        assertEquals("xyz", statistics.getStats().get(1).getExpectedSentence());
+        assertEquals("abc", statistics.getStatsArrayList().get(0).getExpectedSentence());
+        assertEquals("xyz", statistics.getStatsArrayList().get(1).getExpectedSentence());
     }
 
     @Test

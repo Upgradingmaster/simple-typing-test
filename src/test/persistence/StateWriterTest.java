@@ -78,7 +78,7 @@ class StateWriterTest {
 
         Statistics s = sr.parseStatistics();
 
-        assertTrue(s.getStats().isEmpty());
+        assertTrue(s.getStatsArrayList().isEmpty());
     }
 
     @Test
@@ -105,8 +105,8 @@ class StateWriterTest {
         sw.close();
         Statistics s = sr.parseStatistics();
         
-        assertEquals(s1, s.getStats().get(0));
-        assertEquals(s2, s.getStats().get(1));
+        assertEquals(s1, s.getStatsArrayList().get(0));
+        assertEquals(s2, s.getStatsArrayList().get(1));
         
     }
 

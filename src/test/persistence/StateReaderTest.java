@@ -83,7 +83,7 @@ class StateReaderTest {
         }  catch (IOException e)  { 
             fail("Constructor failed");
         }
-            assertTrue(stateReader.parseStatistics().getStats().isEmpty());
+            assertTrue(stateReader.parseStatistics().getStatsArrayList().isEmpty());
     }
 
     @Test
@@ -106,8 +106,8 @@ class StateReaderTest {
             }
 
             try{
-                assertEquals(testStateStatistic1, s.getStats().get(0));
-                assertEquals(testStateStatistic2, s.getStats().get(1));
+                assertEquals(testStateStatistic1, s.getStatsArrayList().get(0));
+                assertEquals(testStateStatistic2, s.getStatsArrayList().get(1));
             } catch (IndexOutOfBoundsException e){
                 fail("Didn't extract all stats");
             }
