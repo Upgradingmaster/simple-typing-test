@@ -18,6 +18,7 @@ class PersistenceService {
       try {
          StateWriter sw = new StateWriter(Constants.stateFilePath);
          sw.write(state.getStats()); // always returns true as its open
+         System.out.println(state.getStats().getStatsArrayList());
          sw.close();
          System.out.println("\nSaved statistics to: " + Constants.stateFilePath);
       } catch (FileNotFoundException e) {

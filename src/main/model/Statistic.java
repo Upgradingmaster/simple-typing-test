@@ -267,7 +267,7 @@ public class Statistic implements IJsonObject {
         return wordsTyped;
     }
 
-    public int getWorstLetter() {
+    public char getWorstLetter() {
         return worstLetter;
     }
 

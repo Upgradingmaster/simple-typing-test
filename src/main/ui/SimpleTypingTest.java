@@ -180,7 +180,6 @@ public class SimpleTypingTest {
      *          to complete a test from start to finish
      */
     public void startTestProcess() {
-        System.out.println();
         int wordCount = chooseWordsCount();
         int totalDuration = chooseTotalDuration();
 

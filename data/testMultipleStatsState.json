@@ -1,16 +1,1 @@
-{
-  "Statistics": [
-    {
-      "expectedSentence": "abc",
-      "userSentence":  "def",
-      "totalDuration": 10,
-      "userDuration": 2,
-    },
-    {
-      "expectedSentence": "ghi",
-      "userSentence":  "jkl",
-      "totalDuration": 5,
-      "userDuration": 1
-    }
-  ]
-}
+{"Statistics":[{"userSentence":"def","totalDuration":10,"userDuration":2,"expectedSentence":"abc"},{"userSentence":"jkl","totalDuration":5,"userDuration":1,"expectedSentence":"ghi"}]}

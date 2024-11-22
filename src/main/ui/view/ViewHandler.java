@@ -115,8 +115,13 @@ class ViewHandler implements PropertyChangeListener {
     // EFFECTS: Adds the Statistic Button at the end of the view
     private void updateFrameAddStat(Statistics prevStats, Statistic newStat) {
         this.statisticView.addStatisticButton(newStat);
-        prevStats.addStat(newStat);
-        this.mainView.getGraphView().redrawGraph(prevStats);
+        Statistics prevCopy = new Statistics();
+        // TODO: Add iterator for statistics
+        for(Statistic s : prevStats.getStatsArrayList()) {
+           prevCopy.addStat(s);
+        }
+        prevCopy.addStat(newStat);
+        this.mainView.getGraphView().redrawGraph(prevCopy);
     }
 
     // EFFECTS: Sets the Buttons to match new Statistics object

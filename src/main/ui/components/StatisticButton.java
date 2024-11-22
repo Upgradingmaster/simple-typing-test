@@ -22,7 +22,7 @@ public class StatisticButton extends JPanel {
 
     private Statistic s;
 
-    // EFFECTS: Defines the  statistic button with a dropdown
+    // EFFECTS: Defines the statistic button with a dropdown
     public StatisticButton(Statistic s) {
         showingDesc = false;
         this.s = s;

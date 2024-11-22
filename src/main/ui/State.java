@@ -26,7 +26,7 @@ class State {
     }
 
     public void addStat(Statistic stat) {
-        support.firePropertyChange("statsIncremental+", null, stat);
+        support.firePropertyChange("statsIncremental+", this.stats, stat);
         this.stats.addStat(stat);
     }
 

@@ -26,12 +26,6 @@ public class StatisticsView extends JPanel {
        noStatistics();
     }
 
-    //private void initComponents() {
-    //    add(new StatisticButton(new Statistic("abc", "abc", 2, 2)));
-    //    add(new StatisticButton(new Statistic("abc", "abc", 2, 2)));
-    //    add(new StatisticButton(new Statistic("abc", "abc", 2, 2)));
-    //}
-    
     // EFFECTS: Adds a statistic and updates the ui
     //          Deletes the No statisics message if it exists
     public void addStatisticButton(Statistic statistic) {

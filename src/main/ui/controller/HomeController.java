@@ -1,6 +1,11 @@
 package ui;
 
 import persistence.StateWriter;
+import ui.DialogBoxView;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 import persistence.StateReader;
 
 public class HomeController {
@@ -14,7 +19,12 @@ public class HomeController {
     }
 
     public void startButtonPressed() {
-         
+        DialogBoxView dialogBoxView = new DialogBoxView((JFrame) SwingUtilities.getWindowAncestor(parentView));
+        if (dialogBoxView.getValid()){
+            parentView.showTestView();
+            parentView.getTestView().startNewTestSequence(dialogBoxView.getWord(), dialogBoxView.getTime());
+        }
+
     }
 
     public void graphButtonPressed() {

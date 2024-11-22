@@ -18,6 +18,7 @@ public class MainView extends JPanel {
 
     private TestView testView;
 
+
     private JButton switchButton;
 
     MainView(Services services) {
@@ -60,5 +61,9 @@ public class MainView extends JPanel {
 
     public GraphView getGraphView() {
         return graphView;
+    }
+
+    public TestView getTestView() {
+        return testView;
     }
 }
