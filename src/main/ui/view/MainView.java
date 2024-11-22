@@ -15,6 +15,7 @@ public class MainView extends JPanel {
     private CardLayout cardLayout;
     private HomeView homeView;
     private GraphView graphView;
+
     private TestView testView;
 
     private JButton switchButton;
@@ -55,5 +56,9 @@ public class MainView extends JPanel {
     // EFFECTS: Sets the view to the test
     public void showTestView() {
         cardLayout.show(this, "Test");
+    }
+
+    public GraphView getGraphView() {
+        return graphView;
     }
 }

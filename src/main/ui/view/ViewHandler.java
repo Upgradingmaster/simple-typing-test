@@ -72,10 +72,6 @@ class ViewHandler implements PropertyChangeListener {
     //            break;
     //
     //    }
-    //
-    //
-    //
-    //
     //    if (graphState) {
     //        mainView.showHomeView();
     //    } else {
@@ -102,32 +98,30 @@ class ViewHandler implements PropertyChangeListener {
     // EFFECTS: Handles ui updates for child views whenever state changes 
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
+        Object newVal =  pce.getNewValue();
+        Object oldVal =  pce.getOldValue();
+
         switch (pce.getPropertyName()){
             case "statsIncremental+":
-                updateFrameAddStat((Statistic) pce.getNewValue());
-                break;
-            case "statsIncremental-":
-                updateFrameRemoveStat((Integer) pce.getNewValue());
+                updateFrameAddStat((Statistics) oldVal, (Statistic) newVal);
                 break;
             case "statsDefinite":
-                updateFrameSetStats((Statistics) pce.getNewValue());
+                updateFrameSetStats((Statistics) newVal);
                 break;
         }
         reloadViews();
     }
-
+    
     // EFFECTS: Adds the Statistic Button at the end of the view
-    private void updateFrameAddStat(Statistic statistic) {
-        this.statisticView.addStatisticButton(statistic);
-    }
-
-    // EFFECTS: Removes the Statistic Button at the index
-    private void updateFrameRemoveStat(int index) {
-        this.statisticView.removeStatisticButton(index);
+    private void updateFrameAddStat(Statistics prevStats, Statistic newStat) {
+        this.statisticView.addStatisticButton(newStat);
+        prevStats.addStat(newStat);
+        this.mainView.getGraphView().redrawGraph(prevStats);
     }
 
     // EFFECTS: Sets the Buttons to match new Statistics object
     private void updateFrameSetStats(Statistics statistics) {
         this.statisticView.setStatisticsButton(statistics);
+        this.mainView.getGraphView().redrawGraph(statistics);
     }
 }

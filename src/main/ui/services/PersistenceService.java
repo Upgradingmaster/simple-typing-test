@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import persistence.StateWriter;
 import persistence.StateReader;
 
+// Service for persistence functionality
 class PersistenceService {
    private State state;
 
@@ -12,8 +13,8 @@ class PersistenceService {
       this.state = state;
    }
 
+   // EFFECTS: Save the current state
    public void save(){
-      // Save current State  
       try {
          StateWriter sw = new StateWriter(Constants.stateFilePath);
          sw.write(state.getStats()); // always returns true as its open
@@ -25,11 +26,10 @@ class PersistenceService {
       }
    }
 
-
-
+   // EFFECTS: Load the state from file defined in Constants
    public void load(){
       try {
-         state.setStats(new StateReader(Constants.stateFilePath).parseStatistics());
+         state.setStats((new StateReader(Constants.stateFilePath)).parseStatistics());
          System.out.println("\nLoaded statistics from: " + Constants.stateFilePath);
       } catch (FileNotFoundException e) {
          System.out.println("Can't locate the state file, " 

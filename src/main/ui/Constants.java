@@ -9,6 +9,6 @@ class Constants {
     public static final int wordsMax = 25;
     public static final int timeMax = 30;
 
-    public static final String stateFilePath = "data/state.json";
-    //public static final String stateFilePath = "data/testMultipleStatsState.json";
+    //public static final String stateFilePath = "data/state.json";
+    public static final String stateFilePath = "data/testMultipleStatsState.json";
 }

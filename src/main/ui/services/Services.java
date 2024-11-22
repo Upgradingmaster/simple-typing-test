@@ -4,6 +4,11 @@ package ui;
 class Services {
     private PersistenceService persistenceService;
     private TestService testService;
+    private GraphService graphService;
+
+    public GraphService getGraphService() {
+        return graphService;
+    }
 
     public PersistenceService getPersistenceService() {
       return persistenceService;
@@ -16,6 +21,7 @@ class Services {
    Services(State state) {
        persistenceService = new PersistenceService(state);
        testService = new TestService(state);
+       graphService = new GraphService(state);
     }
 
 }

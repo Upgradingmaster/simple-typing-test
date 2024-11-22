@@ -41,12 +41,6 @@ public class StatisticsView extends JPanel {
         add(new StatisticButton(statistic));
     }
 
-    public void removeStatisticButton(int index) {
-        remove(index);
-        if (getComponentCount() == 0) {
-            noStatistics();
-        }
-    }
 
     public void clearStatisticButtons() {
         removeAll();

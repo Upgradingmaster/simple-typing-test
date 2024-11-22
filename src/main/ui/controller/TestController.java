@@ -2,11 +2,11 @@ package ui;
 
 
 public class TestController {
-    private Services state;
+    private Services services;
     private MainView parentView;
 
-    TestController(MainView parentView, Services state){
-        this.state = state;
+    TestController(MainView parentView, Services services){
+        this.services = services;
         this.parentView = parentView;
     }
 }

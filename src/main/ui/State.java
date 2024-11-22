@@ -30,18 +30,12 @@ class State {
         this.stats.addStat(stat);
     }
 
-
-    //public void removeStat(int index) {
-    //    support.firePropertyChange("statsIncremental-", null, index);
-    //    this.stats.removeStat(index);
-    //}
-
-    public Statistics getStats() {
-        return stats;
-    }
-
     public void setStats(Statistics stats) {
         support.firePropertyChange("statsDefinite", this.stats, stats);
         this.stats = stats;
+    }
+
+    public Statistics getStats() {
+        return stats;
     }
 }
