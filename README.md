@@ -1,10 +1,5 @@
 # SimpleTypingTest
 
-## Important Notes: 
-* The diff will not be colored in command prompt (windows) due to it not supporting ANSI color codes. I am not using windows however it seems that powershell will work.
-* The user has to press enter before the end of their test duration for their input to be recorded, this is due to the nature of the standard java IOstream libraries.
-* Many other features aren't possible in the CLI application due to this. I hope to heavily improve this application in the GUI version as I will have access to key listeners.
-
 ## About
 This is a basic typing test tool designed to be *lightweight*, fast, ***minimal***, and configurable.
 It is intended for users who prefer a minimal and offline solution to tracking their typing skill.
@@ -48,3 +43,19 @@ It is also the case that I recently have started training my typing speed.
 ### Phase 2 
 - As a user, I want to have the option to save all of my statistics to a file.
 - As a user, I want to have the option to load my past statistics from a file.
+
+
+
+
+## Instruction for End User
+- Press "Start" to start a test.
+- You must choose how many words you want to type in your test
+- You must also choose the length of the test
+- Press ok, Wait for 5 seconds and the test will start
+- Words will be displayed and you must copy them down as fast as possible before the test ends (it will last the duration you chose) and you are sent back to the main menu
+- Then, the Statistics of your test will be updated and you will be able to view them on the right side of the screen
+- You may click on the statistic to view more information
+- When in the main menu, you can choose to view a graph of your statistics
+- You can also save the statistics to a file for later with the "Save" button
+- You can load them back using the "Load" button
+- "Quit" exits the application
