@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import persistence.StateWriter;
 import persistence.StateReader;
 
-// Service for persistence functionality
+// Handles for persistence logic
 class PersistenceService {
     private State state;
 

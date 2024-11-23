@@ -15,18 +15,16 @@ import model.Statistics;
 
 // The pane displaying all current statistics i.e. the state
 public class StatisticsView extends JPanel {
-    private StatisticsController controller;
 
     // EFFECTS: Registers the controller 
     //          Sets the layout to BoxLayout
     //          Displays no statistics message
-    StatisticsView(StatisticsController controller) {
-        this.controller = controller;
+    StatisticsView() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         noStatistics();
     }
 
-    // EFFECTS: Adds a statistic and updates the ui
+    // EFFECTS: Adds a statistic 
     //          Deletes the No statisics message if it exists
     public void addStatisticButton(Statistic statistic) {
         if (getComponentCount() == 1 && getComponent(0) instanceof JLabel) {
@@ -36,13 +34,14 @@ public class StatisticsView extends JPanel {
     }
 
 
+    // EFFECTS: Removes all statisticButtons from the view
     public void clearStatisticButtons() {
         removeAll();
         noStatistics();
     }
 
-
-    public void setStatisticsButton(Statistics statistics) {
+    // EFFECTS: Adds all statistics from the argument to the view 
+    public void setStatisticsButtons(Statistics statistics) {
         clearStatisticButtons();
         for (Statistic s : statistics.getStatsArrayList()) {
             addStatisticButton(s);

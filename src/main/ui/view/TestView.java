@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
+// Represents the view where a test will occur
 class TestView extends JPanel {
     private TestController controller;
     private JLabel systemField;
@@ -32,10 +33,12 @@ class TestView extends JPanel {
         initComponents();
     }
 
+    // EFFECTS: Sets the layout of the view
     private void initLayout() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
 
+    // EFFECTS: Adds the primary components' skeleton
     private void initComponents() {
         initUserField();
         initSystemField();
@@ -53,6 +56,7 @@ class TestView extends JPanel {
     }
 
 
+    // EFFECTS: Defines the systemField skeleton
     private void initSystemField() {
         systemField = new JLabel(); 
         systemField.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -60,6 +64,7 @@ class TestView extends JPanel {
         systemField.setFont(TEST_FONT);
     }
 
+    // EFFECTS: Defines the userField skeleton
     private void initUserField() {
         userField = new JTextField(75);
         userField.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -76,6 +81,9 @@ class TestView extends JPanel {
     }
 
 
+    // EFFECTS: Starts a new test
+    //          calls the appropriate methods in the controller
+    //          starts the countdown
     public void startNewTestSequence(int wordLimit, int timeLimit) {
         systemField.setText("Starting in, " + Constants.countdownTime);
         clearUserField();
@@ -87,42 +95,52 @@ class TestView extends JPanel {
     }
 
 
-    public void beginTest() {
+    // REQUIRES: To be called after the countdown
+    // EFFECTS:  Calls the appropriate controller methods 
+    //           changes the view to show the expected sentence and the textfield
+    private void beginTest() {
         controller.beginTest(); // Starts the timers
         systemField.setText(controller.getExpectedSentence());
         resize();
         userField.setEditable(true);
     }
 
+    // REQUIRES: Call in service 
+    // EFFECTS: Called by the service to force stop
     public void onForceEnd() {
         String userString = userField.getText();
         end(userString);
     }
 
+
+    // EFFECTS: End the test with whatever the user typed
     private void end(String userSentence) {
         controller.testEnded(userSentence);
     }
 
 
 
+    // EFFECTS: Sets the textField to the empty string
     private void clearUserField() {
         userField.setText("");
         userField.setEditable(false);
     }
 
-    // Pack both fields to the dimesnsions of system field's natural size
+    // EFFECTS: Pack both fields to the dimensions of system field's natural size
     private void resize() {
         Dimension newWidth = systemField.getPreferredSize();
         userField.setMaximumSize(newWidth);
         systemField.setMaximumSize(newWidth);
     }
 
+    // EFFECTS: Updates the view to the latest state
     private void reload() {
         revalidate();
         repaint();
     }
 
 
+    // EFFECTS: Displays the countdown and runs callback at the end
     private void startingCountdown(int seconds, Runnable callback) {
         Timer timer = new Timer(1000, new ActionListener() {
             private int time = seconds;

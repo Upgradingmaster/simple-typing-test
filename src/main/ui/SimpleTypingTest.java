@@ -28,7 +28,7 @@ public class SimpleTypingTest {
 
     /*
      * MODIFIES: this
-     * EFFECTS: starts the main appplication process
+     * EFFECTS: starts the main appplication frame
      */
     public SimpleTypingTest() {
         //scanner = new Scanner(System.in);

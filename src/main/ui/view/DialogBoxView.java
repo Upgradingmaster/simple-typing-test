@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+// Represents the Dialog Box View which prompts the user for a word count and time
 public class DialogBoxView extends JDialog {
     private JTextField wordTF;
     private JTextField timeTF;
@@ -33,6 +34,7 @@ public class DialogBoxView extends JDialog {
     }
 
 
+    // EFFECTS: Adds the primary components in the dialogbox
     private void addComponents() {
         wordTF = new JTextField(10);
         timeTF = new JTextField(10);
@@ -46,6 +48,7 @@ public class DialogBoxView extends JDialog {
 
     }
 
+    // Adds the ok component to the dialogbox
     private void addOk() {
         JButton ok = new JButton("OK");
         ok.addActionListener(e -> {
@@ -66,6 +69,7 @@ public class DialogBoxView extends JDialog {
     }
 
 
+    // EFFECTS: checks for validity of the inputs and returns true or false respectively
     private boolean validateInputs(int word, int time) {
         if (Constants.wordsMax < word || word <= 0 
                 || Constants.timeMax < time || time <= 0) {
@@ -74,6 +78,7 @@ public class DialogBoxView extends JDialog {
         return true;
     }
 
+    // EFFECTS: Sets the positioning of the dialogbox
     private void position(JFrame parent) {
         pack();
         setLocationRelativeTo(parent);

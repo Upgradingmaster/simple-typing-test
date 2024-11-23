@@ -23,35 +23,37 @@ public class StatisticButton extends JPanel {
     private Statistic statistic;
 
     // EFFECTS: Defines the statistic button with a dropdown
-    public StatisticButton(Statistic s) {
+    public StatisticButton(Statistic statistic) {
         showingDesc = false;
-        this.statistic = s;
+        this.statistic = statistic;
+        initLayout();
+        addCustomButton();
+    }
 
+
+    // EFFECTS: Sets the layout of the button
+    private void initLayout() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+    }
 
-        //setBorder(new LineBorder(Color.GREEN, 2));
+
+    // EFFECTS: Adds the custom button with the dropdown description
+    //          Creates the description when called
+    private void addCustomButton() {
         JButton button = new JButton(getHeaderString());
         button.setAlignmentX(CENTER_ALIGNMENT);
 
-
-        JTextArea desc = new JTextArea(getDescriptionString());
-        desc.setLineWrap(true);
-        desc.setWrapStyleWord(true);
-        desc.setEditable(false);
-        desc.setAlignmentX(CENTER_ALIGNMENT);
-        JScrollPane scrollableDesc = new JScrollPane(desc);
-        scrollableDesc.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        JScrollPane desc = createDesc();
 
         setMinimumSize(new Dimension(Integer.MAX_VALUE, BUTTON_MIN)); 
         button.setMaximumSize(new Dimension(Integer.MAX_VALUE, BUTTON_MIN)); 
-        scrollableDesc.setMaximumSize(new Dimension(Integer.MAX_VALUE, desc.getPreferredSize().height));
-
+        desc.setMaximumSize(new Dimension(Integer.MAX_VALUE, desc.getPreferredSize().height));
 
         button.addActionListener((a) -> {
             if (showingDesc) {
                 remove(1);
             } else {
-                add(scrollableDesc);
+                add(desc);
             }
             revalidate();
             repaint();
@@ -60,6 +62,20 @@ public class StatisticButton extends JPanel {
         add(button);
     }
 
+
+    // EFFECTS: Builds the description Pane
+    private JScrollPane createDesc() {
+        JTextArea desc = new JTextArea(getDescriptionString());
+        desc.setLineWrap(true);
+        desc.setWrapStyleWord(true);
+        desc.setEditable(false);
+        desc.setAlignmentX(CENTER_ALIGNMENT);
+        JScrollPane scrollableDesc = new JScrollPane(desc);
+        scrollableDesc.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        return scrollableDesc;
+    }
+
+    // EFFECTS: Builds and returns the Statistic information for the GUI
     private String getDescriptionString() {
         String w = (statistic.getWorstLetter() == 0) ? "No mistakes" :  statistic.getWorstLetter() + "";
         return String.format(
@@ -79,6 +95,7 @@ public class StatisticButton extends JPanel {
                 statistic.getUserSentence());
     }
 
+    // EFFECTS: Returns the expected sentence
     private String getHeaderString() {
         return statistic.getExpectedSentence();
     }

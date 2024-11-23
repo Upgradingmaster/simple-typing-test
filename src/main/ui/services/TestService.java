@@ -13,21 +13,21 @@ import javax.swing.Timer;
 
 import model.Statistic;
 
+// Handles the test logic
 class TestService {
     private State state;
     private Test testInstance; 
     private TestView testView;
 
-
     private Timer testTimer;
 
     private long start;
-
 
     TestService(State state) {
         this.state = state;
     }
 
+    // EFFECTS: Creates a new test instance to track the position in the test
     public Test newTestInstance(int wordLimit, int timeLimit, TestView testView) {
         this.testView = testView;
         String randomSentence = generateRandomSentence(wordLimit, new File(Constants.wordsFilePath));
@@ -35,11 +35,16 @@ class TestService {
         return testInstance;
     }
 
+    // EFFECTS: Waits for the users selected time limit
+    //          If it reaches it, then it forces the test to end
+    //          Also saves the current timestamp to be calculated later
     public void beginTest() {
         testCountdown(testInstance.getTimeLimit(), () -> forceEnd());
         start = System.currentTimeMillis();
     }
 
+    // EFFECTS: Stops the test timer
+    //          Saves the state of the test and adds it to the application state
     public void onEnd(String userSentence) {
       // Recieves signal from ui. Stop timer. Add statistic
         testTimer.stop();
@@ -51,12 +56,10 @@ class TestService {
     }
 
 
+    // EFFECTS: Send a signal to frontend to terminate
     public void forceEnd() {
-      // Send a signal to frontend to terminate and return all entered text
         testView.onForceEnd();
     }
-
-   //Util
 
 
    /*
@@ -86,6 +89,7 @@ class TestService {
         return randomSentence.stripTrailing();
     }
 
+    // EFFECTS: Starts the test counter
     private void testCountdown(int seconds, Runnable callback) {
         testTimer = new Timer(seconds * 1000, e -> {
             testTimer.stop();

@@ -20,7 +20,6 @@ class ViewHandler implements PropertyChangeListener {
 
     private MainViewState mainViewState;
 
-    //private boolean graphState = false;
     private JFrame frame;
 
     private MainView mainView;
@@ -34,16 +33,12 @@ class ViewHandler implements PropertyChangeListener {
 
     // EFFECTS: Initializes the primary child views
     public void initViews(Services services) {
-        //setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
         mainView = new MainView(services);
-        statisticView = new StatisticsView(new StatisticsController());
+        statisticView = new StatisticsView();
 
         mainView.setMinimumSize(new Dimension((int)(frame.getWidth() * 0.5), frame.getHeight()));
         statisticView.setMinimumSize(new Dimension((int)(frame.getWidth() * 0.2), frame.getHeight()));
 
-        //main.setBorder(new LineBorder(Color.RED, 2));
-        //statistic.setBorder(new LineBorder(Color.RED, 2));
-        
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, mainView, statisticView);
         splitPane.setResizeWeight(0.8);
         splitPane.setOneTouchExpandable(true);
@@ -56,44 +51,6 @@ class ViewHandler implements PropertyChangeListener {
         frame.revalidate();
         frame.repaint();
     }
-
-
-    //// EFFECTS: Swaps the Main Panel with the GraphView or the MainMenuView
-    //public void toggleGraph() {
-    //    switch (mainViewState) {
-    //        case HOME: 
-    //            mainView.showHomeView(); 
-    //            break;
-    //        case GRAPH: 
-    //            mainView.showHomeView(); 
-    //            break;
-    //        case  
-    //            mainView.showHomeView(); 
-    //            break;
-    //
-    //    }
-    //    if (graphState) {
-    //        mainView.showHomeView();
-    //    } else {
-    //        mainView.showGraphView();
-    //    }
-    //    graphState = !graphState;
-    //}
-    //
-    //
-    //// REQUIRES: !graphState
-    //// EFFECTS: Sets the main panel to display the main menu
-    //private void renderMainMenu() {
-    //
-    //}
-    //
-    //
-    //// REQUIRES: graphState
-    //// EFFECTS: Sets the main panel to display the graph
-    //private void renderGraph() {
-    //
-    //}
-
 
     // EFFECTS: Handles ui updates for child views whenever state changes 
     @Override
@@ -126,7 +83,7 @@ class ViewHandler implements PropertyChangeListener {
 
     // EFFECTS: Sets the Buttons to match new Statistics object
     private void updateFrameSetStats(Statistics statistics) {
-        this.statisticView.setStatisticsButton(statistics);
+        this.statisticView.setStatisticsButtons(statistics);
         this.mainView.getGraphView().redrawGraph(statistics);
     }
 }

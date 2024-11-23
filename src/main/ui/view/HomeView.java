@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
+// Represents the HomeView with the primary options
 public class HomeView extends JPanel {
     
     private static final Font TITLE_FONT = new Font("Serif", Font.BOLD, 36);

@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-// Represents the main view which will either be the main menu or the graph
+// Represents the main view which will either be the main menu, the graph, or the test
 public class MainView extends JPanel {
 
     private CardLayout cardLayout;

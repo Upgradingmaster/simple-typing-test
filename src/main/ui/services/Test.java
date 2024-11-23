@@ -2,15 +2,13 @@ package ui;
 
 import model.Statistic;
 
+// Represents a test instance
 class Test {
-
     private int wordLimit;
     private int timeLimit;
     private String randomSentence;
     private int userTime;
     private String userSentence;
-
-
 
 
     public Test(int wordLimit, int timeLimit, String randomSentence, int userTime, String userSentence) {
@@ -21,21 +19,18 @@ class Test {
         this.userSentence = userSentence;
     }
 
+    // EFFECTS: Converts the test information to a statistic
     public Statistic toStatistic() {
         return new Statistic(randomSentence, userSentence, timeLimit, userTime);
     }
-
 
     public int getUserTime() {
         return userTime;
     }
 
-
     public void setUserTime(int userTime) {
         this.userTime = userTime;
     }
-
-
 
     public String getUserSentence() {
         return userSentence;
@@ -56,7 +51,4 @@ class Test {
     public String getRandomSentence() {
         return randomSentence;
     }
-
-
-
 }
