@@ -24,7 +24,7 @@ class TestView extends JPanel {
     private JTextField userField;
 
 
-    private final Font TEST_FONT = new Font("Serif", Font.BOLD, 26);
+    private static final Font TEST_FONT = new Font("Serif", Font.BOLD, 26);
 
     TestView(TestController controller) {
         this.controller = controller;
@@ -41,15 +41,15 @@ class TestView extends JPanel {
         initSystemField();
 
 
-       add(Box.createVerticalGlue());
-       add(Box.createHorizontalGlue());
+        add(Box.createVerticalGlue());
+        add(Box.createHorizontalGlue());
 
-       add(systemField);
-       add(Box.createVerticalStrut(10));
-       add(userField);
+        add(systemField);
+        add(Box.createVerticalStrut(10));
+        add(userField);
 
-       add(Box.createVerticalGlue());
-       add(Box.createVerticalGlue());
+        add(Box.createVerticalGlue());
+        add(Box.createVerticalGlue());
     }
 
 
@@ -94,14 +94,14 @@ class TestView extends JPanel {
         userField.setEditable(true);
     }
 
-   public void onForceEnd() {
-       String userString = userField.getText();
-       end(userString) ;
-   }
+    public void onForceEnd() {
+        String userString = userField.getText();
+        end(userString);
+    }
 
-   private void end(String userSentence) {
-       controller.testEnded(userSentence);
-   }
+    private void end(String userSentence) {
+        controller.testEnded(userSentence);
+    }
 
 
 
@@ -125,7 +125,7 @@ class TestView extends JPanel {
 
     private void startingCountdown(int seconds, Runnable callback) {
         Timer timer = new Timer(1000, new ActionListener() {
-            int time = seconds;
+            private int time = seconds;
             @Override
             public void actionPerformed(ActionEvent e) {
                 time--;

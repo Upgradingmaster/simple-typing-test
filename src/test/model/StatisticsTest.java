@@ -24,19 +24,19 @@ class StatisticsTest {
         assertEquals("xyz", statistics.getStatsArrayList().get(1).getExpectedSentence());
     }
 
-    @Test
-    void testGenerateGraph() {
-        String graph = "   12|                     x\n"
-                     + "     |                      \n"
-                     + "     |                      \n"
-                     + "     |                      \n"
-                     + "     |                      \n"
-                     + "     |                      \n"
-                     + "     |                      \n"
-                     + "     |                      \n"
-                     + "     |          x           \n"
-                     + "    3|----------|----------|";
-        assertEquals(graph, statistics.generateGraph());
-    }
+    //@Test
+    //void testGenerateGraph() {
+    //    String graph = "   12|                     x\n"
+    //                 + "     |                      \n"
+    //                 + "     |                      \n"
+    //                 + "     |                      \n"
+    //                 + "     |                      \n"
+    //                 + "     |                      \n"
+    //                 + "     |                      \n"
+    //                 + "     |                      \n"
+    //                 + "     |          x           \n"
+    //                 + "    3|----------|----------|";
+    //    assertEquals(graph, statistics.generateGraph());
+    //}
 
 }

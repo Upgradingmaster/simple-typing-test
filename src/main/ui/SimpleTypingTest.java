@@ -24,25 +24,14 @@ import persistence.StateWriter;
 // An application to test typing with random sentences and review statistics of tests
 public class SimpleTypingTest {
     private State state;
-    private Scanner scanner;
-
-    // Constants
-    private final String defaultError = "\n\t---Invalid Selection---\n";
-    private final int mainMenuOptionCount = 6;
-
-    private final int countdownTime = 5;
-    private final String wordsFilePath = "data/words.txt";
-    private final int wordsMax = 25;
-    private final int timeMax = 30;
-
-    private final String stateFilePath = "data/state.json";
+    //private Scanner scanner;
 
     /*
      * MODIFIES: this
      * EFFECTS: starts the main appplication process
      */
     public SimpleTypingTest() {
-        scanner = new Scanner(System.in);
+        //scanner = new Scanner(System.in);
         state = new State();
         Services services = new Services(state);
 
@@ -56,34 +45,34 @@ public class SimpleTypingTest {
      * EFFECTS: keeps the program running until 
      *          user quits i.e. System.exit(0)
      */
-    public void run() {
-        while (true) {
-            spawnMenu();
-        }
-    }
+    //public void run() {
+    //    while (true) {
+    //        spawnMenu();
+    //    }
+    //}
 
 
     /*
      * EFFECTS: displays the main menu and waits for a selection
      */
-    public void spawnMenu() {
-        printMenuOptions();
-        int choice = awaitUserInput(0, mainMenuOptionCount - 1, defaultError);
-        handleMainMenuCases(choice);
-    }
-
-    /*
-     * EFFECTS: print the main menu 
-     */
-    public void printMenuOptions() {
-        System.out.println("\nSimpleTypingTest:\n" 
-                + "\t(1) Start a test\n" 
-                + "\t(2) View past statistics\n" 
-                + "\t(3) View Graph\n" 
-                + "\t(4) Save your statistics to a file\n" 
-                + "\t(5) Load past statistics from a file\n" 
-                + "\t(0) Quit");
-    }
+    //public void spawnMenu() {
+    //    printMenuOptions();
+    //    int choice = awaitUserInput(0, Constants.mainMenuOptionCount - 1, Constants.defaultError);
+    //    handleMainMenuCases(choice);
+    //}
+    //
+    ///*
+    // * EFFECTS: print the main menu 
+    // */
+    //public void printMenuOptions() {
+    //    System.out.println("\nSimpleTypingTest:\n" 
+    //            + "\t(1) Start a test\n" 
+    //            + "\t(2) View past statistics\n" 
+    //            + "\t(3) View Graph\n" 
+    //            + "\t(4) Save your statistics to a file\n" 
+    //            + "\t(5) Load past statistics from a file\n" 
+    //            + "\t(0) Quit");
+    //}
 
 
     /*
@@ -94,28 +83,28 @@ public class SimpleTypingTest {
      * EFFECTS: wait for a valid user integer input in the given 
      *          range of integers
      */
-    public int awaitUserInput(int min, int max, String errorString) {
-        int option = 0;
-        boolean error = false;
-        do {
-            if (error) {
-                System.out.println(errorString);
-            }
-            try {
-                System.out.print(">> ");
-                option = scanner.nextInt();
-                if ((option < min) || (option > max)) {
-                    error = true;
-                    continue;
-                }
-                error = false;
-            } catch (InputMismatchException e) {
-                error = true;
-                scanner.nextLine();
-            }
-        } while (error);
-        return option;
-    }
+    //public int awaitUserInput(int min, int max, String errorString) {
+    //    int option = 0;
+    //    boolean error = false;
+    //    do {
+    //        if (error) {
+    //            System.out.println(errorString);
+    //        }
+    //        try {
+    //            System.out.print(">> ");
+    //            option = scanner.nextInt();
+    //            if ((option < min) || (option > max)) {
+    //                error = true;
+    //                continue;
+    //            }
+    //            error = false;
+    //        } catch (InputMismatchException e) {
+    //            error = true;
+    //            scanner.nextLine();
+    //        }
+    //    } while (error);
+    //    return option;
+    //}
 
     /*
      * REQUIRES: a valid main menu option
@@ -123,40 +112,40 @@ public class SimpleTypingTest {
      * EFFECTS: executes the respective method based
      *          on the user's choice
      */
-    public void handleMainMenuCases(int choice) {
-        switch (choice) {
-            case 1:
-                startTestProcess();
-                break;
-            case 2: 
-                viewAllStatistics();
-                break;
-            case 3: 
-                showGraph();
-                break;
-            case 4: 
-                save();
-                break;
-            case 5: 
-                load();
-                break;
-            case 0: System.exit(0);
-        } 
-    }
+    //public void handleMainMenuCases(int choice) {
+    //    switch (choice) {
+    //        case 1:
+    //            startTestProcess();
+    //            break;
+    //        case 2: 
+    //            viewAllStatistics();
+    //            break;
+    //        case 3: 
+    //            showGraph();
+    //            break;
+    //        case 4: 
+    //            save();
+    //            break;
+    //        case 5: 
+    //            load();
+    //            break;
+    //        case 0: System.exit(0);
+    //    } 
+    //}
 
 
 
-    public void save() {
-        try {
-            StateWriter sw = new StateWriter(this.stateFilePath);
-            sw.write(this.state.getStats()); // always returns true as its open
-            sw.close();
-            System.out.println("\nSaved statistics to: " + this.stateFilePath);
-        } catch (FileNotFoundException e) {
-            System.out.println("Can't locate the state file, " 
-                    + "either it is missing or it is specified incorrectly");
-        }
-    }
+    //public void save() {
+    //    try {
+    //        StateWriter sw = new StateWriter(Constants.stateFilePath);
+    //        sw.write(this.state.getStats()); // always returns true as its open
+    //        sw.close();
+    //        System.out.println("\nSaved statistics to: " + Constants.stateFilePath);
+    //    } catch (FileNotFoundException e) {
+    //        System.out.println("Can't locate the state file, " 
+    //                + "either it is missing or it is specified incorrectly");
+    //    }
+    //}
 
     /* 
      * MODIFIES: this.stats
@@ -164,67 +153,67 @@ public class SimpleTypingTest {
      *          and updates the current sessions stats object
      *          thus updating the current session's state.
      * */
-    public void load() {
-        try {
-            this.state.setStats(new StateReader(this.stateFilePath).parseStatistics());
-            System.out.println("\nLoaded statistics from: " + this.stateFilePath);
-        } catch (FileNotFoundException e) {
-            System.out.println("Can't locate the state file, " 
-                    + "either it is missing or it is specified incorrectly");
-        }
-    }
-
+    //public void load() {
+    //    try {
+    //        this.state.setStats(new StateReader(Constants.stateFilePath).parseStatistics());
+    //        System.out.println("\nLoaded statistics from: " + Constants.stateFilePath);
+    //    } catch (FileNotFoundException e) {
+    //        System.out.println("Can't locate the state file, " 
+    //                + "either it is missing or it is specified incorrectly");
+    //    }
+    //}
+    //
     /*
      * MODIFIES: this
      * EFFECTS: handles calling all the necassary methods
      *          to complete a test from start to finish
      */
-    public void startTestProcess() {
-        int wordCount = chooseWordsCount();
-        int totalDuration = chooseTotalDuration();
-
-        System.out.print("\n");
-
-        String randomSentence = generateRandomSentence(wordCount, new File(wordsFilePath));
-        System.out.println("Sentence: " + randomSentence);
-        countdown(countdownTime);
-
-        System.out.print("\n");
-
-        long start = System.currentTimeMillis();
-        String userSentence = startTest(totalDuration, randomSentence);
-        long end = System.currentTimeMillis();
-        if (userSentence == "") {
-            return;
-        }
-        int userDuration = (int) TimeUnit.MILLISECONDS.toSeconds(end - start);
-
-        System.out.print("\n");
-
-        Statistic statistic = new Statistic(randomSentence, userSentence, totalDuration, userDuration);
-        displayStatistic(statistic);
-        this.state.addStat(statistic);
-    }
+    //public void startTestProcess() {
+    //    int wordCount = chooseWordsCount();
+    //    int totalDuration = chooseTotalDuration();
+    //
+    //    System.out.print("\n");
+    //
+    //    String randomSentence = generateRandomSentence(wordCount, new File(Constants.wordsFilePath));
+    //    System.out.println("Sentence: " + randomSentence);
+    //    countdown(Constants.countdownTime);
+    //
+    //    System.out.print("\n");
+    //
+    //    long start = System.currentTimeMillis();
+    //    String userSentence = startTest(totalDuration, randomSentence);
+    //    long end = System.currentTimeMillis();
+    //    if (userSentence == "") {
+    //        return;
+    //    }
+    //    int userDuration = (int) TimeUnit.MILLISECONDS.toSeconds(end - start);
+    //
+    //    System.out.print("\n");
+    //
+    //    Statistic statistic = new Statistic(randomSentence, userSentence, totalDuration, userDuration);
+    //    displayStatistic(statistic);
+    //    this.state.addStat(statistic);
+    //}
 
     /*
      * EFFECTS: prompt the user to choose
      *          how many words the test should be
      *          then returns this value
      */
-    public int chooseWordsCount() {
-        System.out.println("How many words to test (Maximum of " + wordsMax + "): ");
-        return awaitUserInput(1, wordsMax, defaultError);
-    }
+    //public int chooseWordsCount() {
+    //    System.out.println("How many words to test (Maximum of " + Constants.wordsMax + "): ");
+    //    return awaitUserInput(1, Constants.wordsMax, Constants.defaultError);
+    //}
 
     /*
      * EFFECTS: prompt the user to choose
      *          how long the test should be
      *          then returns this value
      */
-    public int chooseTotalDuration() {
-        System.out.println("How long should the test be in seconds (Maximum of " + timeMax + "s): ");
-        return awaitUserInput(1, timeMax, defaultError);
-    }
+    //public int chooseTotalDuration() {
+    //    System.out.println("How long should the test be in seconds (Maximum of " + Constants.timeMax + "s): ");
+    //    return awaitUserInput(1, Constants.timeMax, Constants.defaultError);
+    //}
 
     /*
      * REQUIRES: the file which stores random words,
@@ -233,25 +222,25 @@ public class SimpleTypingTest {
      * EFFECTS: pick n random words from the 'file'
      *          then concatenate and return
      */
-    public String generateRandomSentence(int n, File file) {
-        List<String> words = new ArrayList<>();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String word;
-            while ((word = br.readLine()) != null) {
-                words.add(word); 
-            }
-        } catch (IOException e) {
-            e.printStackTrace(); 
-        }
-
-        Collections.shuffle(words);
-        String randomSentence = "";
-        for (int i = 0; i < n; i++)  {
-            randomSentence += words.get(i) + " ";
-        }
-        return randomSentence.stripTrailing();
-    }
+    //public String generateRandomSentence(int n, File file) {
+    //    List<String> words = new ArrayList<>();
+    //
+    //    try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+    //        String word;
+    //        while ((word = br.readLine()) != null) {
+    //            words.add(word); 
+    //        }
+    //    } catch (IOException e) {
+    //        e.printStackTrace(); 
+    //    }
+    //
+    //    Collections.shuffle(words);
+    //    String randomSentence = "";
+    //    for (int i = 0; i < n; i++)  {
+    //        randomSentence += words.get(i) + " ";
+    //    }
+    //    return randomSentence.stripTrailing();
+    //}
 
     /*
      * REQUIRES: integer n, 
@@ -259,45 +248,45 @@ public class SimpleTypingTest {
      *          essentially blocks the main thread 
      *          to for n seconds
      */
-    public void countdown(int n) {
-        for (int i = n; i > 0; i--) {
-            try {
-                System.out.print("\r");
-                System.out.print("Starting in " + i);
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println();
-    }
-
+    //public void countdown(int n) {
+    //    for (int i = n; i > 0; i--) {
+    //        try {
+    //            System.out.print("\r");
+    //            System.out.print("Starting in " + i);
+    //            Thread.sleep(1000);
+    //        } catch (InterruptedException e) {
+    //            e.printStackTrace();
+    //        }
+    //    }
+    //    System.out.println();
+    //}
+    //
     /*
      * REQUIRES: the duration of the test after which to stop,
      *           the sentence the user is trying to match
      * EFFECTS:  prints the test ui elements
      *           and starts reading the user input
      */
-    public String startTest(int duration, String sentence) {
-        System.out.println("Start!");
-        System.out.println("-----");
-        System.out.println("Sentence: " + sentence);
-
-        String userSentence = readTestInput(duration);
-        this.userSentence = "";
-
-        if (userSentence.equals("")) {
-            System.out.println("---No sentence recorded---"); 
-        } else { 
-            System.out.println("-----");
-        }
-
-        return userSentence;
-    }
+    //public String startTest(int duration, String sentence) {
+    //    System.out.println("Start!");
+    //    System.out.println("-----");
+    //    System.out.println("Sentence: " + sentence);
+    //
+    //    String userSentence = readTestInput(duration);
+    //    this.userSentence = "";
+    //
+    //    if (userSentence.equals("")) {
+    //        System.out.println("---No sentence recorded---"); 
+    //    } else { 
+    //        System.out.println("-----");
+    //    }
+    //
+    //    return userSentence;
+    //}
 
 
     // needed since it is accessed inside lambda
-    private String userSentence = "";
+    //private String userSentence = "";
 
     /*
      * REQUIRES: the duration of the test
@@ -305,57 +294,57 @@ public class SimpleTypingTest {
      *          duration of the test
      *          and returns it
      */
-    @SuppressWarnings("methodLength")
-    public String readTestInput(int totalDuration) {
-
-        Thread inputThread = new Thread(() -> {
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            try {
-                // Workaraound to make readline non-blocking
-                while (System.in.available() < 1) {
-                    Thread.sleep(200);
-                }
-
-                userSentence = br.readLine();
-
-            } catch (InterruptedException e) {
-                System.out.println("\nTime's up!");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-        Thread timerThread = new Thread(() -> {
-            try {
-                Thread.sleep(totalDuration * 1000); 
-                inputThread.interrupt();
-            } catch (InterruptedException e) {
-                // do nothing as we intentionally interrupt
-                System.out.println(""); 
-            }
-        });
-
-        inputThread.start();
-        timerThread.start();
-
-        try {
-            inputThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        timerThread.interrupt();
-        return userSentence;
-    } 
+    //@SuppressWarnings("methodLength")
+    //public String readTestInput(int totalDuration) {
+    //
+    //    Thread inputThread = new Thread(() -> {
+    //
+    //        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    //        try {
+    //            // Workaraound to make readline non-blocking
+    //            while (System.in.available() < 1) {
+    //                Thread.sleep(200);
+    //            }
+    //
+    //            userSentence = br.readLine();
+    //
+    //        } catch (InterruptedException e) {
+    //            System.out.println("\nTime's up!");
+    //        } catch (IOException e) {
+    //            e.printStackTrace();
+    //        }
+    //    });
+    //
+    //    Thread timerThread = new Thread(() -> {
+    //        try {
+    //            Thread.sleep(totalDuration * 1000); 
+    //            inputThread.interrupt();
+    //        } catch (InterruptedException e) {
+    //            // do nothing as we intentionally interrupt
+    //            System.out.println(""); 
+    //        }
+    //    });
+    //
+    //    inputThread.start();
+    //    timerThread.start();
+    //
+    //    try {
+    //        inputThread.join();
+    //    } catch (InterruptedException e) {
+    //        e.printStackTrace();
+    //    }
+    //    timerThread.interrupt();
+    //    return userSentence;
+    //} 
 
 
     /*
      * REQUIRES: a statistic to print
      * EFFECTS:  displays a given statistic
      */
-    public void displayStatistic(Statistic s) {
-        System.out.print(s.toString() + "\n");
-    }
+    //public void displayStatistic(Statistic s) {
+    //    System.out.print(s.toString() + "\n");
+    //}
 
 
     /*
@@ -363,36 +352,36 @@ public class SimpleTypingTest {
      * EFFECTS: iterates over Statistics printing each one out
      *          then prompts the user to display a specific one
      */
-    public void viewAllStatistics() {
-        ArrayList<Statistic> a = this.state.getStats().getStatsArrayList();
-        int len = a.size();
-        if (len == 0) { 
-            System.out.print("\t---No statistics to show---\n"); 
-        } else {
-            for (int i = 0; i < len; i++) {
-                System.out.print("(" + (i + 1) + ") ");
-                displayStatistic(a.get(i));
-                System.out.print("\n");
-            }
-            System.out.print("Inspect a statistic (0 to go back to main menu): ");
-            int id = awaitUserInput(0, len, defaultError);
-            if (id != 0) {
-                System.out.print("\n");
-                displayStatistic(a.get(id - 1));
-            }
-        }
-    }
+    //public void viewAllStatistics() {
+    //    ArrayList<Statistic> a = this.state.getStats().getStatsArrayList();
+    //    int len = a.size();
+    //    if (len == 0) { 
+    //        System.out.print("\t---No statistics to show---\n"); 
+    //    } else {
+    //        for (int i = 0; i < len; i++) {
+    //            System.out.print("(" + (i + 1) + ") ");
+    //            displayStatistic(a.get(i));
+    //            System.out.print("\n");
+    //        }
+    //        System.out.print("Inspect a statistic (0 to go back to main menu): ");
+    //        int id = awaitUserInput(0, len, defaultError);
+    //        if (id != 0) {
+    //            System.out.print("\n");
+    //            displayStatistic(a.get(id - 1));
+    //        }
+    //    }
+    //}
 
     /* 
      * REQUIRES: this
      * EFFECTS: iterates over Statistics printing each one out
      */
-    public void showGraph() {
-        if (this.state.getStats().getStatsArrayList().size() == 0) { 
-            System.out.print("\t---No statistics to plot---\n"); 
-        } else {
-            System.out.print(this.state.getStats().generateGraph() + "\n");
-        }
-    }
+    //public void showGraph() {
+    //    if (this.state.getStats().getStatsArrayList().size() == 0) { 
+    //        System.out.print("\t---No statistics to plot---\n"); 
+    //    } else {
+    //        System.out.print(this.state.getStats().generateGraph() + "\n");
+    //    }
+    //}
 
 }

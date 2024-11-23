@@ -12,7 +12,7 @@ class State {
     private PropertyChangeSupport support;
 
 
-    State(){
+    State() {
         stats = new Statistics();
         support = new PropertyChangeSupport(this);
     }

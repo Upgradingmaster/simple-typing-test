@@ -21,9 +21,9 @@ public class StatisticsView extends JPanel {
     //          Sets the layout to BoxLayout
     //          Displays no statistics message
     StatisticsView(StatisticsController controller) {
-       this.controller = controller;
-       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-       noStatistics();
+        this.controller = controller;
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        noStatistics();
     }
 
     // EFFECTS: Adds a statistic and updates the ui
@@ -44,7 +44,7 @@ public class StatisticsView extends JPanel {
 
     public void setStatisticsButton(Statistics statistics) {
         clearStatisticButtons();
-        for (Statistic s : statistics.getStatsArrayList()){
+        for (Statistic s : statistics.getStatsArrayList()) {
             addStatisticButton(s);
         }
     }

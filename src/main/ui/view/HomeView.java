@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 
 public class HomeView extends JPanel {
     
-    private final Font TITLE_FONT = new Font("Serif", Font.BOLD, 36);
-    private final Font BUTTON_FONT = new Font("Serif", Font.BOLD, 20);
+    private static final Font TITLE_FONT = new Font("Serif", Font.BOLD, 36);
+    private static final Font BUTTON_FONT = new Font("Serif", Font.BOLD, 20);
 
     private HomeController controller;
 

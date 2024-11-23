@@ -18,7 +18,7 @@ import javax.swing.border.LineBorder;
 
 // The Main UI Application Frame
 public class MainFrame extends JFrame {
-    private final String TITLE;
+    private static final String TITLE = "Simple Typing Test";
     private ViewHandler viewHandler;
 
 
@@ -26,7 +26,6 @@ public class MainFrame extends JFrame {
     //          Sets the initiale position and size
     //          Registers children Panels
     MainFrame(State state, Services services) {
-        TITLE = "Simple Typing Test";
         this.viewHandler = new ViewHandler(this);
         state.addPropertyChangeListener(viewHandler);
         initMain();

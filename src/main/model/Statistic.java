@@ -91,6 +91,19 @@ public class Statistic implements IJsonObject {
      *          then returns it
      */
     public char findWorstLetter() {
+        Map<Character, Integer> counts = getCounts();
+        if (counts.isEmpty()) {
+            return 0; 
+        }
+        // TODO: check for if all error counts are the same -> return  some error
+        char max = Collections.max(counts.entrySet(), Map.Entry.comparingByValue()).getKey();
+        if (max == ' ') {
+            max = '_';
+        }
+        return max;
+    }
+
+    private Map<Character, Integer> getCounts() {
         Map<Character, Integer> counts = new HashMap<>();
         char userChar;
         char expectedChar;
@@ -104,15 +117,7 @@ public class Statistic implements IJsonObject {
                 counts.put(expectedChar, counts.getOrDefault(expectedChar, 0) + 1);
             }
         }
-        if (counts.isEmpty()) {
-            return 0; 
-        }
-        // TODO: check for if all error counts are the same -> return  some error
-        char max = Collections.max(counts.entrySet(), Map.Entry.comparingByValue()).getKey();
-        if (max == ' ') {
-            max = '_';
-        }
-        return max;
+        return counts;
     }
 
     /*

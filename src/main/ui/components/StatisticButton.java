@@ -17,15 +17,15 @@ import model.Statistic;
 // A UI element representing a single statistic with a drop down for more details
 public class StatisticButton extends JPanel {
     private boolean showingDesc;
-    private final int BUTTON_MIN = 50;
-    private final int DESC_MIN = 300;
+    private static final int BUTTON_MIN = 50;
+    private static final int DESC_MIN = 300;
 
-    private Statistic s;
+    private Statistic statistic;
 
     // EFFECTS: Defines the statistic button with a dropdown
     public StatisticButton(Statistic s) {
         showingDesc = false;
-        this.s = s;
+        this.statistic = s;
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -48,19 +48,20 @@ public class StatisticButton extends JPanel {
 
 
         button.addActionListener((a) -> {
-             if (showingDesc) {
-                 remove(1);
-             } else {
-                 add(scrollableDesc);
-             }
-             revalidate();
-             repaint();
-             showingDesc = !showingDesc;
+            if (showingDesc) {
+                remove(1);
+            } else {
+                add(scrollableDesc);
+            }
+            revalidate();
+            repaint();
+            showingDesc = !showingDesc;
         });
         add(button);
     }
+
     private String getDescriptionString() {
-        String w = (s.getWorstLetter() == 0) ? "No mistakes" :  s.getWorstLetter() + "";
+        String w = (statistic.getWorstLetter() == 0) ? "No mistakes" :  statistic.getWorstLetter() + "";
         return String.format(
                 "Time Taken: %d\n"
                 + "WPM: %d\n"
@@ -69,15 +70,16 @@ public class StatisticButton extends JPanel {
                 + "Worst Letter: %s\n"
                 + "Expected :%s\n"
                 + "Your Sentence: %s",
-                s.getUserDuration(),
-                s.getWpm(),
-                s.getAccuracy(), 
-                s.getWordsTyped(),
+                statistic.getUserDuration(),
+                statistic.getWpm(),
+                statistic.getAccuracy(), 
+                statistic.getWordsTyped(),
                 w, 
-                s.getExpectedSentence(),
-                s.getUserSentence());
+                statistic.getExpectedSentence(),
+                statistic.getUserSentence());
     }
+
     private String getHeaderString() {
-        return s.getExpectedSentence();
+        return statistic.getExpectedSentence();
     }
 }

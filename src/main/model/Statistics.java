@@ -32,43 +32,42 @@ public class Statistics implements IJsonArray {
      *          The Y-axis represents the WPM of a Statistic
      *          The X-axis essentially represents the order it was added to the list 
      * */
-    @SuppressWarnings("methodLength") // Necessary
-    public String generateGraph() {
-        final int margin = 5;
-        final int spacing = 10;
-
-        List<Integer> wpmY = stats.stream().map(Statistic::getWpm).collect(Collectors.toList());
-        int maxY = Collections.max(wpmY);
-        int minY = Collections.min(wpmY) - 1;
-        int n = wpmY.size();
-
-        int rows = (maxY - minY + 1);
-        int columns = (margin + 1 + (n + (n * spacing)) + 1);
-        StringBuilder graph = new StringBuilder(rows * columns);
-
-        for (int y = maxY; y >= minY; y--) {
-
-            if (y == maxY || y == minY) {
-                graph.append(" ".repeat((margin - (String.valueOf(y)).length())) + y);
-            } else {
-                graph.append(" ".repeat(margin));
-            }
-            graph.append("|");
-            if (y == minY) {
-                graph.append(("-".repeat(spacing) + "|").repeat(n));
-                break;
-            }
-
-            for (int x = 0; x < n; x++) {
-                graph.append(" ".repeat(spacing));
-                char point = (wpmY.get(x) == y) ? 'x' : ' ';
-                graph.append(point);
-            }
-            graph.append("\n");
-        }
-        return graph.toString();
-    }
-
+    //@SuppressWarnings("methodLength") // Necessary
+    //public String generateGraph() {
+    //    final int margin = 5;
+    //    final int spacing = 10;
+    //
+    //    List<Integer> wpmY = stats.stream().map(Statistic::getWpm).collect(Collectors.toList());
+    //    int maxY = Collections.max(wpmY);
+    //    int minY = Collections.min(wpmY) - 1;
+    //    int n = wpmY.size();
+    //
+    //    int rows = (maxY - minY + 1);
+    //    int columns = (margin + 1 + (n + (n * spacing)) + 1);
+    //    StringBuilder graph = new StringBuilder(rows * columns);
+    //
+    //    for (int y = maxY; y >= minY; y--) {
+    //
+    //        if (y == maxY || y == minY) {
+    //            graph.append(" ".repeat((margin - (String.valueOf(y)).length())) + y);
+    //        } else {
+    //            graph.append(" ".repeat(margin));
+    //        }
+    //        graph.append("|");
+    //        if (y == minY) {
+    //            graph.append(("-".repeat(spacing) + "|").repeat(n));
+    //            break;
+    //        }
+    //
+    //        for (int x = 0; x < n; x++) {
+    //            graph.append(" ".repeat(spacing));
+    //            char point = (wpmY.get(x) == y) ? 'x' : ' ';
+    //            graph.append(point);
+    //        }
+    //        graph.append("\n");
+    //    }
+    //    return graph.toString();
+    //}
 
     public void addStat(Statistic stat) {
         this.stats.add(stat);

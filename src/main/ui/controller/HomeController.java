@@ -13,14 +13,14 @@ public class HomeController {
     private Services services;
     private MainView parentView;
 
-    HomeController(MainView parentView, Services services){
+    HomeController(MainView parentView, Services services) {
         this.services = services;
         this.parentView = parentView;
     }
 
     public void startButtonPressed() {
         DialogBoxView dialogBoxView = new DialogBoxView((JFrame) SwingUtilities.getWindowAncestor(parentView));
-        if (dialogBoxView.getValid()){
+        if (dialogBoxView.getValid()) {
             parentView.showTestView();
             parentView.getTestView().startNewTestSequence(dialogBoxView.getWord(), dialogBoxView.getTime());
         }

@@ -52,7 +52,7 @@ class ViewHandler implements PropertyChangeListener {
     }
 
     // EFFECTS: Reloads all the views with latest ui changes
-    public void reloadViews(){
+    public void reloadViews() {
         frame.revalidate();
         frame.repaint();
     }
@@ -101,7 +101,7 @@ class ViewHandler implements PropertyChangeListener {
         Object newVal =  pce.getNewValue();
         Object oldVal =  pce.getOldValue();
 
-        switch (pce.getPropertyName()){
+        switch (pce.getPropertyName()) {
             case "statsIncremental+":
                 updateFrameAddStat((Statistics) oldVal, (Statistic) newVal);
                 break;
@@ -117,8 +117,8 @@ class ViewHandler implements PropertyChangeListener {
         this.statisticView.addStatisticButton(newStat);
         Statistics prevCopy = new Statistics();
         // TODO: Add iterator for statistics
-        for(Statistic s : prevStats.getStatsArrayList()) {
-           prevCopy.addStat(s);
+        for (Statistic s : prevStats.getStatsArrayList()) {
+            prevCopy.addStat(s);
         }
         prevCopy.addStat(newStat);
         this.mainView.getGraphView().redrawGraph(prevCopy);

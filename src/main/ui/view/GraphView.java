@@ -45,10 +45,10 @@ public class GraphView extends JPanel {
 
 
     public void redrawGraph(Statistics newState) {
-       remove(1);
-       add(controller.getChartPanel(newState));
-       revalidate();
-       repaint();
+        remove(1);
+        add(controller.getChartPanel(newState));
+        revalidate();
+        repaint();
     }
 
 }

@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class DialogBoxView extends JDialog {
+    private JTextField wordTF;
+    private JTextField timeTF;
     
     private int word;
     private int time;
@@ -32,14 +34,19 @@ public class DialogBoxView extends JDialog {
 
 
     private void addComponents() {
-        JTextField wordTF = new JTextField(10);
-        JTextField timeTF = new JTextField(10);
+        wordTF = new JTextField(10);
+        timeTF = new JTextField(10);
 
         add(new JLabel(String.format("Test Word Count(max of %d) : ", Constants.wordsMax)));
         add(wordTF);
         add(new JLabel(String.format("Test Length(s)(max of %d) : ", Constants.timeMax)));
         add(timeTF);
 
+        addOk();
+
+    }
+
+    private void addOk() {
         JButton ok = new JButton("OK");
         ok.addActionListener(e -> {
             try {
@@ -50,23 +57,21 @@ public class DialogBoxView extends JDialog {
                     JOptionPane.showMessageDialog(this, "Please enter valid numbers");
                     return;
                 }
-                
                 dispose();
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Please enter valid numbers");
             }
         });
-
         add(ok);
     }
 
 
     private boolean validateInputs(int word, int time) {
-       if (Constants.wordsMax < word || word <= 0 
-               || Constants.timeMax < time || time <= 0){
-           return false;
+        if (Constants.wordsMax < word || word <= 0 
+                || Constants.timeMax < time || time <= 0) {
+            return false;
         } 
-       return true;
+        return true;
     }
 
     private void position(JFrame parent) {

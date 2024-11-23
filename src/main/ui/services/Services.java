@@ -11,17 +11,17 @@ class Services {
     }
 
     public PersistenceService getPersistenceService() {
-      return persistenceService;
-   }
+        return persistenceService;
+    }
 
-   public TestService getTestService() {
-      return testService;
-   }
+    public TestService getTestService() {
+        return testService;
+    }
 
-   Services(State state) {
-       persistenceService = new PersistenceService(state);
-       testService = new TestService(state);
-       graphService = new GraphService(state);
+    Services(State state) {
+        persistenceService = new PersistenceService(state);
+        testService = new TestService(state);
+        graphService = new GraphService(state);
     }
 
 }

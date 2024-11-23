@@ -8,7 +8,7 @@ public class GraphController {
     private Services services;
     private MainView parentView;
 
-    GraphController(MainView parentView, Services services){
+    GraphController(MainView parentView, Services services) {
         this.services = services;
         this.parentView = parentView;
     }
