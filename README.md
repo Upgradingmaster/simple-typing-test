@@ -96,3 +96,10 @@ Sat Nov 23 17:07:58 PST 2024
 Sat Nov 23 17:08:00 PST 2024
 >> Hiding Description for button number: 6
 ```
+
+
+
+## Phase 4: Task 3
+
+- The first thing I would fix if I had more time was to have a clearer seperation between the application logic and the UI as this would make it much more scaleabl, readable and would follow best practices (MVC). I would do this by moving services from the UI to the model. I would also establish a standardized hierarchy for all the Swing components (Panels, buttons, etc.).
+- I would abstract out each atomic component into its own class with the help of interfaces and abstract classes. From the UML diagram, it is clear that I am not making use of their potential. This would allow me to fine tune each component quite easily in the future as I wouldn't have to go searching for their definitions in the various *view*s.
