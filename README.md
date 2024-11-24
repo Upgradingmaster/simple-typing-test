@@ -60,3 +60,39 @@ It is also the case that I recently have started training my typing speed.
 - You can also save the statistics to a file for later with the "Save" button 
 - You can load them back using the "Load" button
 - "Quit" exits the application
+
+
+
+
+## Phase 4: Task 2
+```
+Sat Nov 23 17:07:09 PST 2024
+>> Statistics have been set
+
+Sat Nov 23 17:07:11 PST 2024
+>> Showing Description for button number: 2
+
+Sat Nov 23 17:07:12 PST 2024
+>> Showing Description for button number: 3
+
+Sat Nov 23 17:07:21 PST 2024
+>> Showing Description for button number: 5
+
+Sat Nov 23 17:07:30 PST 2024
+>> Hiding Description for button number: 3
+
+Sat Nov 23 17:07:31 PST 2024
+>> Hiding Description for button number: 2
+
+Sat Nov 23 17:07:32 PST 2024
+>> Hiding Description for button number: 5
+
+Sat Nov 23 17:07:49 PST 2024
+>> A statistic was added
+
+Sat Nov 23 17:07:58 PST 2024
+>> Showing Description for button number: 6
+
+Sat Nov 23 17:08:00 PST 2024
+>> Hiding Description for button number: 6
+```
