@@ -53,9 +53,10 @@ It is also the case that I recently have started training my typing speed.
 - You must also choose the length of the test
 - Press ok, Wait for 5 seconds and the test will start
 - Words will be displayed and you must copy them down as fast as possible before the test ends (it will last the duration you chose) and you are sent back to the main menu
-- Then, the Statistics of your test will be updated and you will be able to view them on the right side of the screen
-- You may click on the statistic to view more information
-- When in the main menu, you can choose to view a graph of your statistics
-- You can also save the statistics to a file for later with the "Save" button
+- Then, the Statistics of your test will be updated and you will be able to view them on the right side of the screen (Add X to Y) (User Interaction 1)
+---
+- You may click on the statistic to view more information (Another User Interaction)
+- When in the main menu, you can choose to view a graph of your statistics (Visual Element)
+- You can also save the statistics to a file for later with the "Save" button 
 - You can load them back using the "Load" button
 - "Quit" exits the application
