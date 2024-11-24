@@ -10,10 +10,11 @@ import persistence.IJsonObject;
 
 // Represents a single Statistic for a test done by the user
 public class Statistic implements IJsonObject {
+    
     // Information about the test
     private final String expectedSentence;
     private final String userSentence;
-    private final int totalDuration; // Redundant for now
+    private final int totalDuration; 
     private final int userDuration;
 
     // Variables to measure
@@ -22,9 +23,6 @@ public class Statistic implements IJsonObject {
     private final int wordsTyped;
     private final char worstLetter;
     private final String diff;
-
-
-
 
     // Constants
     //  Colors

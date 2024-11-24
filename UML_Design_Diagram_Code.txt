@@ -1,0 +1,90 @@
+classDiagram
+    class Main
+    class Event
+    class EventLog {<<singleton>>}
+    class Logger
+    class State
+    class Statistic
+    class Statistics
+    class IJsonArray {<<interface>>}
+    class IJsonObject {<<interface>>}
+    class StateReader
+    class StateWriter
+    class StatisticButton
+    class Constants
+    class GraphController
+    class HomeController
+    class StatisticButtonController
+    class MainFrame
+    class GraphService
+    class PersistenceService
+    class Services
+    class SimpleTypingTest
+    class DialogBoxView
+    class GraphView
+    class HomeView
+    class MainView
+    class StatisticsView
+    class TestView
+    class ViewHandler
+    class TestController
+    class TestService
+    class Test
+
+
+    SimpleTypingTest --> "1" State
+
+    MainFrame --> "1" ViewHandler
+    MainFrame --> "1" Services
+
+    MainView o--> "1" HomeView
+    MainView o--> "1" GraphView
+    MainView o--> "1" TestView
+
+    GraphView o--> "1" GraphController
+    HomeView o--> "1" HomeController
+    TestView o--> "1" TestController
+    StatisticsView --> "1" Services
+
+    ViewHandler --> "1" MainView
+    ViewHandler --> "1" StatistcsView
+
+    GraphService --> "1" State
+    PersistenceService --> "1" State
+
+    TestService --> "1" State
+    TestService o--> "1" Test
+    TestService --> "1" TestView
+
+    Services o--> "1"  PersistenceService
+    Services o--> "1" TestService
+    Services o--> "1" GraphService
+    Services o--> "1" Logger
+
+
+    GraphController --> Services
+    GraphController --> MainView
+
+    HomeController --> Services
+    HomeController --> MainView
+
+    GraphController --> Services
+    GraphController --> MainView
+
+    StatisticButtonController --> Logger
+
+    TestController o--> TestService
+    TestController --> MainView
+    TestController --> Test
+
+    StatisticButton o--> StatisticButtonController
+    StatisticButton o--> Statistic
+
+    State o--> Statistics
+
+    Statistic ..|> IJsonObject
+
+    Statistics o--> "0..*" Statistic
+    Statistics ..|> IJsonArray
+
+    EventLog o--> "0..*" Event

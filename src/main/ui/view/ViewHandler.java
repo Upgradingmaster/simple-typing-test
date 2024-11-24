@@ -14,21 +14,13 @@ import model.Statistics;
 // Top level Handler for managing state and user interaction with the various views
 class ViewHandler implements PropertyChangeListener {
 
-    private enum MainViewState {
-        HOME, GRAPH, TEST
-    }
-
-    private MainViewState mainViewState;
-
-    private JFrame frame;
-
+    private JFrame mainFrame;
     private MainView mainView;
     private StatisticsView statisticView; 
     private JSplitPane splitPane; 
 
-    ViewHandler(JFrame frame) {
-        mainViewState = MainViewState.HOME;
-        this.frame = frame;
+    ViewHandler(JFrame mainFrame) {
+        this.mainFrame = mainFrame;
     }
 
     // EFFECTS: Initializes the primary child views
@@ -36,20 +28,20 @@ class ViewHandler implements PropertyChangeListener {
         mainView = new MainView(services);
         statisticView = new StatisticsView(services);
 
-        mainView.setMinimumSize(new Dimension((int)(frame.getWidth() * 0.5), frame.getHeight()));
-        statisticView.setMinimumSize(new Dimension((int)(frame.getWidth() * 0.2), frame.getHeight()));
+        mainView.setMinimumSize(new Dimension((int)(mainFrame.getWidth() * 0.5), mainFrame.getHeight()));
+        statisticView.setMinimumSize(new Dimension((int)(mainFrame.getWidth() * 0.2), mainFrame.getHeight()));
 
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, mainView, statisticView);
         splitPane.setResizeWeight(0.8);
         splitPane.setOneTouchExpandable(true);
 
-        frame.add(splitPane);
+        mainFrame.add(splitPane);
     }
 
     // EFFECTS: Reloads all the views with latest ui changes
     public void reloadViews() {
-        frame.revalidate();
-        frame.repaint();
+        mainFrame.revalidate();
+        mainFrame.repaint();
     }
 
     // EFFECTS: Handles ui updates for child views whenever state changes 
