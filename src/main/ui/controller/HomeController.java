@@ -49,6 +49,7 @@ public class HomeController {
 
     // EFFECTS: Ends the application
     public void quitButtonPressed() {
+        services.getLogger().printToTerminal();
         System.exit(0);
     }
 }

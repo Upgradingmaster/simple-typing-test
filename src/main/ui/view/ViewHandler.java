@@ -34,7 +34,7 @@ class ViewHandler implements PropertyChangeListener {
     // EFFECTS: Initializes the primary child views
     public void initViews(Services services) {
         mainView = new MainView(services);
-        statisticView = new StatisticsView();
+        statisticView = new StatisticsView(services);
 
         mainView.setMinimumSize(new Dimension((int)(frame.getWidth() * 0.5), frame.getHeight()));
         statisticView.setMinimumSize(new Dimension((int)(frame.getWidth() * 0.2), frame.getHeight()));

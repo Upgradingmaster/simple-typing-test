@@ -18,6 +18,8 @@ import org.jfree.chart.plot.CategoryPlot;
 import model.Statistic;  
 import model.Statistics;  
 
+import model.State;
+
 // Handles Graph logic and generation
 class GraphService {
     private State state;

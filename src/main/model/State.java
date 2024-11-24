@@ -1,4 +1,4 @@
-package ui;
+package model;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -7,12 +7,12 @@ import model.Statistic;
 import model.Statistics;
 
 // Represents the state of the application which is observable by others
-class State {
+public class State {
     private Statistics stats;
 
     private PropertyChangeSupport support;
 
-    State() {
+    public State() {
         stats = new Statistics();
         support = new PropertyChangeSupport(this);
     }
@@ -32,12 +32,14 @@ class State {
     public void addStat(Statistic stat) {
         support.firePropertyChange("statsIncremental+", this.stats, stat);
         this.stats.addStat(stat);
+        EventLog.getInstance().logEvent(new Event(">> A statistic was added"));
     }
 
     // EFFECTS: sets the statistic in the state, firing a definite change event
     public void setStats(Statistics stats) {
         support.firePropertyChange("statsDefinite", this.stats, stats);
         this.stats = stats;
+        EventLog.getInstance().logEvent(new Event(">> Statistics have been set"));
     }
 
 

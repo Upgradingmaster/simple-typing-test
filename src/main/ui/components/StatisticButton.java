@@ -16,6 +16,7 @@ import model.Statistic;
 
 // A UI element representing a single statistic with a drop down for more details
 public class StatisticButton extends JPanel {
+    private StatisticButtonController controller;
     private boolean showingDesc;
     private static final int BUTTON_MIN = 50;
     private static final int DESC_MIN = 300;
@@ -23,7 +24,8 @@ public class StatisticButton extends JPanel {
     private Statistic statistic;
 
     // EFFECTS: Defines the statistic button with a dropdown
-    public StatisticButton(Statistic statistic) {
+    public StatisticButton(Statistic statistic, StatisticButtonController controller) {
+        this.controller = controller;
         showingDesc = false;
         this.statistic = statistic;
         initLayout();
@@ -52,8 +54,10 @@ public class StatisticButton extends JPanel {
         button.addActionListener((a) -> {
             if (showingDesc) {
                 remove(1);
+                controller.hideDesc();
             } else {
                 add(desc);
+                controller.showDesc();
             }
             revalidate();
             repaint();

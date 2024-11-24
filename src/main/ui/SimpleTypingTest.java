@@ -18,8 +18,8 @@ import javax.swing.SwingUtilities;
 
 import model.Statistics;
 import model.Statistic;
-import persistence.StateReader;
-import persistence.StateWriter;
+
+import model.State;
 
 // An application to test typing with random sentences and review statistics of tests
 public class SimpleTypingTest {

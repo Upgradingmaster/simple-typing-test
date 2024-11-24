@@ -13,6 +13,8 @@ import javax.swing.Timer;
 
 import model.Statistic;
 
+import model.State;
+
 // Handles the test logic
 class TestService {
     private State state;
@@ -53,6 +55,7 @@ class TestService {
         this.testInstance.setUserSentence(userSentence);
         Statistic statistic = testInstance.toStatistic();
         state.addStat(statistic);
+
     }
 
 
