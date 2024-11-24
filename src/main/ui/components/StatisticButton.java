@@ -29,6 +29,7 @@ public class StatisticButton extends JPanel {
         showingDesc = false;
         this.statistic = statistic;
         initLayout();
+        setMinimumSize(new Dimension(Integer.MAX_VALUE, BUTTON_MIN)); 
         addCustomButton();
     }
 
@@ -47,7 +48,6 @@ public class StatisticButton extends JPanel {
 
         JScrollPane desc = createDesc();
 
-        setMinimumSize(new Dimension(Integer.MAX_VALUE, BUTTON_MIN)); 
         button.setMaximumSize(new Dimension(Integer.MAX_VALUE, BUTTON_MIN)); 
         desc.setMaximumSize(new Dimension(Integer.MAX_VALUE, desc.getPreferredSize().height));
 
