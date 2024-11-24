@@ -24,6 +24,7 @@ import model.State;
 // An application to test typing with random sentences and review statistics of tests
 public class SimpleTypingTest {
     private State state;
+
     //private Scanner scanner;
 
     /*
