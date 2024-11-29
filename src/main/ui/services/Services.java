@@ -28,6 +28,8 @@ class Services {
         return testService;
     }
 
+    // EFFECTS: Initializes with the services to be 
+    //          dependency injected throughout the project
     Services(State state) {
         persistenceService = new PersistenceService(state);
         testService = new TestService(state);

@@ -12,6 +12,8 @@ public class State {
 
     private PropertyChangeSupport support;
 
+    // EFFECTS: Initializes the Statistics with nothing
+    //          Adds a PropertyChangeSupport to make it a subject
     public State() {
         stats = new Statistics();
         support = new PropertyChangeSupport(this);

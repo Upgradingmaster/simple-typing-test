@@ -11,6 +11,7 @@ class Test {
     private String userSentence;
 
 
+    // EFFECTS: Initializes a test instance with the given parameters
     public Test(int wordLimit, int timeLimit, String randomSentence, int userTime, String userSentence) {
         this.wordLimit = wordLimit;
         this.timeLimit = timeLimit;

@@ -11,6 +11,7 @@ import model.State;
 class PersistenceService {
     private State state;
 
+    // EFFECTS: Initializes the PersistenceService with the state
     PersistenceService(State state) {
         this.state = state;
     }

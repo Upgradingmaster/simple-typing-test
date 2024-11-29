@@ -9,6 +9,7 @@ public class GraphController {
     private Services services;
     private MainView parentView;
 
+    // EFFECTS: Initializes a GraphController with the MainView and the needed services
     GraphController(MainView parentView, Services services) {
         this.services = services;
         this.parentView = parentView;

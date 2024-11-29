@@ -25,6 +25,7 @@ class TestService {
 
     private long start;
 
+    // EFFECTS: Initializes the TestService with the state
     TestService(State state) {
         this.state = state;
     }

@@ -8,6 +8,8 @@ public class StatisticButtonController {
     private Logger loggerService;
     private int id;
 
+    // EFFECTS: Initializes a StatisticButtonController with the 
+    //          needed services and the id of the attached button
     StatisticButtonController(Services services, int id) {
         this.loggerService = services.getLogger();
         this.id = id;

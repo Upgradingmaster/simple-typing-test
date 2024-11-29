@@ -21,6 +21,7 @@ public class MainView extends JPanel {
 
     private JButton switchButton;
 
+    // EFFECTS: Adds the two views, initializes a card layout with the main three views
     MainView(Services services) {
         initViews(services);
         setupCardLayout();

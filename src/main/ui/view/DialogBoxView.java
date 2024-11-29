@@ -20,6 +20,9 @@ public class DialogBoxView extends JDialog {
     private int time;
     private boolean valid;
 
+    // EFFECTS: Initializes the layout to GridLayout
+    //          Adds the primary components
+    //          Positions it to the center of the parent 
     DialogBoxView(JFrame parent) {
         super(parent, "Select", true);
         initLayout();

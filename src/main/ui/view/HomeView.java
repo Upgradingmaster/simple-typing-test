@@ -18,6 +18,8 @@ public class HomeView extends JPanel {
 
     private HomeController controller;
 
+    // EFFECTS: Initializes the layout to BoxLayout
+    //          Adds the home buttons and title
     HomeView(HomeController controller) {
         this.controller = controller;
         initLayout();

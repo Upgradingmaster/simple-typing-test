@@ -14,6 +14,9 @@ import model.Statistics;
 public class GraphView extends JPanel {
     private GraphController controller;
 
+    // EFFECTS: Initializes the layout to BoxLayout
+    //          Adds the button to go back
+    //          Adds the graph
     GraphView(GraphController controller) {
         this.controller = controller;
         initLayout();

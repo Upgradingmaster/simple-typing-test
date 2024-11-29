@@ -19,6 +19,7 @@ class ViewHandler implements PropertyChangeListener {
     private StatisticsView statisticView; 
     private JSplitPane splitPane; 
 
+    // EFFECTS: Initializes with the root mainFrame
     ViewHandler(JFrame mainFrame) {
         this.mainFrame = mainFrame;
     }

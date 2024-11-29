@@ -14,6 +14,7 @@ public class HomeController {
     private Services services;
     private MainView parentView;
 
+    // EFFECTS: Initializes a HomeController with the MainView and the needed services
     HomeController(MainView parentView, Services services) {
         this.services = services;
         this.parentView = parentView;

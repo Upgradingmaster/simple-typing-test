@@ -27,6 +27,8 @@ class TestView extends JPanel {
 
     private static final Font TEST_FONT = new Font("Serif", Font.BOLD, 26);
 
+    // EFFECTS: Initializes the layout to BoxLayout
+    //          Adds the test components
     TestView(TestController controller) {
         this.controller = controller;
         initLayout();

@@ -7,6 +7,8 @@ public class TestController {
 
     private Test testInstance;
 
+
+    // EFFECTS: Initializes a TestController with the MainView and the needed services
     TestController(MainView parentView, Services services) {
         this.service = services.getTestService();
         this.parentView = parentView;

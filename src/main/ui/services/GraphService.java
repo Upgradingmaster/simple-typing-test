@@ -24,6 +24,7 @@ import model.State;
 class GraphService {
     private State state;
 
+    // EFFECTS: Initializes the GraphService with the state
     GraphService(State state) {
         this.state = state;
     }
