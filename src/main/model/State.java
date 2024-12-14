@@ -3,9 +3,6 @@ package model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import model.Statistic;
-import model.Statistics;
-
 // Represents the state of the application which is observable by others
 public class State {
     private Statistics stats;

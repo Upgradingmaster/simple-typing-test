@@ -20,22 +20,22 @@ class StateWriterTest {
         try{
             stateWriter = new StateWriter("this/is/invalid");
             fail("Accepted invalid path");
-        } catch (FileNotFoundException e) { }
+        } catch (FileNotFoundException e) { /* Expected */ }
 
         try{
             stateWriter = new StateWriter("data/");
             fail("Accepted directory");
-        } catch (FileNotFoundException e) { }
+        } catch (FileNotFoundException e) { /* Expected */ }
 
         try{
             stateWriter = new StateWriter(new File("this/is/invalid"));
             fail("Accepted invalid path");
-        } catch (FileNotFoundException e) { }
+        } catch (FileNotFoundException e) { /* Expected */ }
 
         try{
             stateWriter = new StateWriter(new File("data/"));
             fail("Accepted directory");
-        } catch (FileNotFoundException e) { }
+        } catch (FileNotFoundException e) { /* Expected */ }
     }
     
     @Test

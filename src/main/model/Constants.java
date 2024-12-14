@@ -1,6 +1,6 @@
-package ui;
+package model;
 
-class Constants {
+public class Constants {
     public static final String defaultError = "\n\t---Invalid Selection---\n";
     public static final int mainMenuOptionCount = 6;
 

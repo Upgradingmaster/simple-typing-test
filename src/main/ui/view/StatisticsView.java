@@ -13,6 +13,8 @@ import javax.swing.border.LineBorder;
 import model.Statistic;
 import model.Statistics;
 
+import model.Services;
+
 // The pane displaying all current statistics i.e. the state
 public class StatisticsView extends JPanel {
     private Services services;

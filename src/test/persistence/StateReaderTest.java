@@ -16,58 +16,59 @@ import model.Statistics;
 
 class StateReaderTest {
 
-    StateReader stateReader;
+    private StateReader stateReader;
 
     @Test
-    void testConstructorInvalidPath(){
+    void testConstructorInvalidPath() {
         try {
             stateReader = new StateReader("./data/abc.json");
             fail("Accepeted an invalid path");
-        } catch (FileNotFoundException e){}
+        } catch (FileNotFoundException e) { /* Expected */ }
 
         try {
             stateReader = new StateReader("12345");
             fail("Accepeted an invalid path");
-        } catch (FileNotFoundException e){}
+        } catch (FileNotFoundException e) { /* Expected */ }
 
         try {
             stateReader = new StateReader(new File("12345"));
             fail("Accepeted an invalid path");
-        } catch (FileNotFoundException e){}
+        } catch (FileNotFoundException e) { /* Expected */ }
+
 
         try {
             stateReader = new StateReader(new File("./data/abc.json"));
             fail("Accepeted an invalid path");
-        } catch (FileNotFoundException e){}
+        } catch (FileNotFoundException e) { /* Expected */ }
     }
 
     @Test
-    void testConstructorValidPath(){
+    void testConstructorValidPath() {
         try {
             stateReader = new StateReader("./data/testNoStatsState.json");
             assertEquals("testNoStatsState.json", stateReader.getFile().getName());
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             fail("String constructor does not accept valid path");
         }
 
         try {
             stateReader = new StateReader(new File("./data/testNoStatsState.json"));
             assertEquals("testNoStatsState.json", stateReader.getFile().getName());
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             fail("File constructor does not accept valid path");
         }
     }
 
     
     @Test
-    void testParseContents(){
-        try{
+    void testParseContents() {
+        try {
             stateReader = new StateReader("./data/testNoStatsState.json");
-        }  catch (IOException e)  { 
+        }  catch (IOException e) { 
             fail("Constructor failed");
         }
 
-        try{
+        try {
             assertEquals("{\n    \"Statistics\": []\n}", stateReader.parseContents());
         } catch (IOException e) {
             fail(e.toString());
@@ -77,41 +78,40 @@ class StateReaderTest {
 
 
     @Test
-    void testParseStatsEmpty(){
-        try{
+    void testParseStatsEmpty() {
+        try {
             stateReader = new StateReader("./data/testNoStatsState.json");
-        }  catch (IOException e)  { 
+        }  catch (IOException e) { 
             fail("Constructor failed");
         }
-            assertTrue(stateReader.parseStatistics().getStatsArrayList().isEmpty());
+        assertTrue(stateReader.parseStatistics().getStatsArrayList().isEmpty());
     }
 
     @Test
-    void testParseStatsMultiple(){
-        try{
+    void testParseStatsMultiple() {
+        try {
             stateReader = new StateReader("./data/testMultipleStatsState.json");
         }  catch (IOException e)  { 
             fail("Constructor failed");
         }
 
-            Statistic testStateStatistic1 = new Statistic("abc", "def", 10, 2);
-            Statistic testStateStatistic2 = new Statistic("ghi", "jkl", 5, 1);
+        Statistic testStateStatistic1 = new Statistic("abc", "def", 10, 2);
+        Statistic testStateStatistic2 = new Statistic("ghi", "jkl", 5, 1);
 
-            Statistics s;
-            try{
-              s  =  stateReader.parseStatistics();
-            } catch (NullPointerException e) {
-                fail("Returned null");
-                return; // To signal to compiler that the function will not proceed
-            }
+        Statistics s;
+        try {
+            s  =  stateReader.parseStatistics();
+        } catch (NullPointerException e) {
+            fail("Returned null");
+            return; // To signal to compiler that the function will not proceed
+        }
 
-            try{
-                assertEquals(testStateStatistic1, s.getStatsArrayList().get(0));
-                assertEquals(testStateStatistic2, s.getStatsArrayList().get(1));
-            } catch (IndexOutOfBoundsException e){
-                fail("Didn't extract all stats");
-            }
-
+        try {
+            assertEquals(testStateStatistic1, s.getStatsArrayList().get(0));
+            assertEquals(testStateStatistic2, s.getStatsArrayList().get(1));
+        } catch (IndexOutOfBoundsException e) {
+            fail("Didn't extract all stats");
+        }
     }
 }
 

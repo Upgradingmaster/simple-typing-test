@@ -3,6 +3,7 @@ package ui;
 import org.jfree.chart.ChartPanel;  
 
 import model.Statistics;  
+import model.Services;  
 
 // Handles user interaction with the GraphView
 public class GraphController {

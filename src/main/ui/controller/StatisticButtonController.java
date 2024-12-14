@@ -1,11 +1,12 @@
 package ui;
 
 
-import model.Logger;
+import model.LoggerService;
+import model.Services;
 
 public class StatisticButtonController {
 
-    private Logger loggerService;
+    private LoggerService loggerService;
     private int id;
 
     // EFFECTS: Initializes a StatisticButtonController with the 

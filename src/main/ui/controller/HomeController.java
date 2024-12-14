@@ -8,6 +8,8 @@ import javax.swing.SwingUtilities;
 
 import persistence.StateReader;
 
+import model.Services;
+
 // Handles user interaction with the HomeView
 public class HomeController {
 

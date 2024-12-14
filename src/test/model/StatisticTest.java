@@ -75,7 +75,6 @@ class StatisticTest {
     }
 
     @Test
-    @SuppressWarnings("lineLength")
     void testToString() {
         assertEquals(String.format("Statistic:\n\tTime Taken: %d\n\tWPM: %d\n\tAccuracy: %d%%\n\tWords Typed: %d\n\tWorst Letter: %s\n\n%s", 
                 userDuration, wpm, accuracy, wordsTyped, worstLetter, diff), 

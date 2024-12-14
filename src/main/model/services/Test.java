@@ -1,9 +1,7 @@
-package ui;
-
-import model.Statistic;
+package model;
 
 // Represents a test instance
-class Test {
+public class Test {
     private int wordLimit;
     private int timeLimit;
     private String randomSentence;

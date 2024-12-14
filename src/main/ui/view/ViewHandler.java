@@ -11,6 +11,8 @@ import javax.swing.JSplitPane;
 import model.Statistic;
 import model.Statistics;
 
+import model.Services;
+
 // Top level Handler for managing state and user interaction with the various views
 class ViewHandler implements PropertyChangeListener {
 

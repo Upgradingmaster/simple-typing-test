@@ -1,20 +1,11 @@
-package ui;
-
-import model.Logger;
-
-import model.State;
+package model;
 
 // An abstraction for holding services for DI
-class Services {
+public class Services {
     private PersistenceService persistenceService;
     private TestService testService;
     private GraphService graphService;
-    private Logger logger;
-
-
-    public Logger getLogger() {
-        return logger;
-    }
+    private LoggerService loggerService;
 
     public GraphService getGraphService() {
         return graphService;
@@ -28,13 +19,18 @@ class Services {
         return testService;
     }
 
+    public LoggerService getLogger() {
+        return loggerService;
+    }
+
     // EFFECTS: Initializes with the services to be 
     //          dependency injected throughout the project
-    Services(State state) {
+    public Services(State state) {
         persistenceService = new PersistenceService(state);
         testService = new TestService(state);
         graphService = new GraphService(state);
-        logger = new Logger();
+        loggerService = new LoggerService();
     }
+
 }
 

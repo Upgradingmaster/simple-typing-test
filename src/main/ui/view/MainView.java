@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+import model.Services;
+
 // Represents the main view which will either be the main menu, the graph, or the test
 public class MainView extends JPanel {
 

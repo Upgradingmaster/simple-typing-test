@@ -1,7 +1,12 @@
 package ui;
 
+
+import model.TestService;
+import model.Test;
+import model.Services;
+
 // Routes user interactions during the test to the service
-public class TestController {
+class TestController {
     private TestService service;
     private MainView parentView;
 

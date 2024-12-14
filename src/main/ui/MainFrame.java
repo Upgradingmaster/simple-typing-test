@@ -19,6 +19,8 @@ import javax.swing.border.LineBorder;
 
 import model.State;
 
+import model.Services;
+
 // The Main UI Application Frame
 public class MainFrame extends JFrame {
     private static final String TITLE = "Simple Typing Test";

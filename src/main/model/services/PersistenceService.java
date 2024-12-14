@@ -1,14 +1,12 @@
-package ui;
+package model;
 
 import java.io.FileNotFoundException;
 
 import persistence.StateWriter;
 import persistence.StateReader;
 
-import model.State;
-
 // Handles for persistence logic
-class PersistenceService {
+public class PersistenceService {
     private State state;
 
     // EFFECTS: Initializes the PersistenceService with the state

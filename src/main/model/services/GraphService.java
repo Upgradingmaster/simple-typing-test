@@ -1,4 +1,4 @@
-package ui;
+package model;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -15,13 +15,8 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.chart.plot.CategoryPlot;
 
-import model.Statistic;  
-import model.Statistics;  
-
-import model.State;
-
 // Handles Graph logic and generation
-class GraphService {
+public class GraphService {
     private State state;
 
     // EFFECTS: Initializes the GraphService with the state

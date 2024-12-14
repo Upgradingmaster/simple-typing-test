@@ -3,7 +3,7 @@ package model;
 import java.util.Iterator;
 
 // Handles user event logging
-public class Logger {
+public class LoggerService {
 
     // EFFECTS: Writes the desc as a log
     public void log(String desc) {

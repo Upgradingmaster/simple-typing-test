@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.Constants;
+
 // Represents the Dialog Box View which prompts the user for a word count and time
 public class DialogBoxView extends JDialog {
     private JTextField wordTF;

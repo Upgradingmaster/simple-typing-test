@@ -1,4 +1,4 @@
-package ui;
+package model;
 
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -11,12 +11,10 @@ import java.util.List;
 
 import javax.swing.Timer;
 
-import model.Statistic;
-
-import model.State;
+import ui.TestView;
 
 // Handles the test logic
-class TestService {
+public class TestService {
     private State state;
     private Test testInstance; 
     private TestView testView;

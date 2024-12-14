@@ -18,8 +18,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
+
+import model.Constants;
+
 // Represents the view where a test will occur
-class TestView extends JPanel {
+public class TestView extends JPanel {
     private TestController controller;
     private JLabel systemField;
     private JTextField userField;
