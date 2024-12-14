@@ -6,7 +6,7 @@
 - Switch to build tool
 - Higher accuracy calculations for Statistic fields
 - Better cli graph creation to fit in the screen
-- Delete statistic
+- Delete statistic  
 
 ## About
 This is a basic typing test tool designed to be *lightweight*, fast, ***minimal***, and configurable.
